@@ -7,7 +7,7 @@ function App() {
   const handle = async () => {
     console.log('work')
     try {
-      const response = await fetch("http://localhost:8080/login", {
+      const response = await fetch("http://localhost:9090/login", {
         method: 'GET'
       })
 
