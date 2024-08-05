@@ -29,9 +29,12 @@ export const Reg: React.FC = () => {
 
   const handle = async (e) => {
     e.preventDefault();
-    const data = new FormData(formData.current);
+    const data = {
+        login: formData.current[0].value,
+        password: formData.current[1].value
+    };
 
-    fetchPost(data);
+    await fetchPost(data);
   };
   return (
     <main>
@@ -39,10 +42,10 @@ export const Reg: React.FC = () => {
         <section>
           <h1>Registration</h1>
         </section>
-        <form ref={formData} onClick={handle}>
+        <form ref={formData}>
           <input type="text" name="login" />
           <input type="password" name="password" />
-          <button>sign un</button>
+          <button onClick={handle}>sign un</button>
           <button
             onClick={() => {
               navigate("/");
