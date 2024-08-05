@@ -28,7 +28,7 @@ public class UserController {
 //    }
 //
     @CrossOrigin
-    @GetMapping("/sign-in")
+    @PostMapping("/sign-in")
     public User getUser(@RequestBody User user) {
         //log.info("GET Запрос на поиск пользователя по id {}", id);
         return userStorage.getUser(user);
