@@ -29,9 +29,12 @@ export const Login: React.FC = () => {
 
   const handle = async (e) => {
     e.preventDefault();
-    const data = new FormData(formData.current);
+    const data = {
+        login: formData.current[0].value,
+        password: formData.current[1].value
+    };
 
-    fetchPost(data);
+    await fetchPost(data);
   };
 
   return (
@@ -40,10 +43,10 @@ export const Login: React.FC = () => {
         <section>
           <h1>Login</h1>
         </section>
-        <form ref={formData} onClick={handle}>
+        <form ref={formData}>
           <input type="text" name="login" />
           <input type="password" name="password" />
-          <button>sign in</button>
+          <button onClick={handle}>sign in</button>
           <button
             onClick={() => {
               navigate("/sign-up");
