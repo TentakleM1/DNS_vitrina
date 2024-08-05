@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       pages: path.resolve('src/pages/index'),
+      shared: path.resolve('src/shared/index'),
     },
   },
 })
