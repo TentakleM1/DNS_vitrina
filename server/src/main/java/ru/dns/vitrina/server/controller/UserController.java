@@ -1,22 +1,25 @@
 package ru.dns.vitrina.server.controller;
 
 import org.springframework.web.bind.annotation.*;
+import ru.dns.vitrina.server.model.User;
+import ru.dns.vitrina.server.storage.UserStorage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping
 public class UserController {
-    List<String> name = new ArrayList<>();
+    UserStorage userStorage = new UserStorage();
 //    private final UserService userService;
 //
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public User createUser(@RequestBody @Validated({Create.class, Default.class}) User user) {
-//        log.info("GET Запрос на создание пользователя {}", user);
-//        return userService.createUser(user);
-//    }
+    @CrossOrigin
+    @PostMapping("/sign-up")
+    public User createUser(@RequestBody User user) {
+        //log.info("GET Запрос на создание пользователя {}", user);
+        System.out.println(user.toString());
+        return userStorage.createUser(user);
+    }
 //
 //    @PutMapping
 //    public User updateUser(@RequestBody @Validated({Update.class, Default.class}) User user) {
@@ -25,11 +28,10 @@ public class UserController {
 //    }
 //
     @CrossOrigin
-    @GetMapping
-    public List<String> get() {
+    @GetMapping("/sign-in")
+    public User getUser(@RequestBody User user) {
         //log.info("GET Запрос на поиск пользователя по id {}", id);
-        name.add("userService.getUser(id);");
-        return name;
+        return userStorage.getUser(user);
     }
 //
 //    @GetMapping()
