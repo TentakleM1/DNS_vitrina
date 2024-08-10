@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Login, Reg } from "../pages";
-import { Map } from "../pages/map";
+import {Login, Map, Reg} from "../pages";
 
 export const routers = createBrowserRouter([
     {
@@ -15,5 +14,4 @@ export const routers = createBrowserRouter([
         path: "/map",
         element: <Map />
     }
-
 ])

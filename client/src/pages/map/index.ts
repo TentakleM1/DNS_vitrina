@@ -1,1 +1,1 @@
-export { Map } from "./view"
+export { Map } from './view.tsx'
