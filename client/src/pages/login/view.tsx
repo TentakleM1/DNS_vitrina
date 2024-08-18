@@ -30,7 +30,7 @@ export const Login: React.FC = () => {
   const handle = async (e) => {
     e.preventDefault();
     const data = {
-        login: formData.current[0].value,
+        lastName: formData.current[0].value,
         password: formData.current[1].value
     };
 

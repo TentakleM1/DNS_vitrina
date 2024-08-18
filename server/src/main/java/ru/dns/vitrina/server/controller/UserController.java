@@ -1,24 +1,26 @@
 package ru.dns.vitrina.server.controller;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.dns.vitrina.server.model.User;
-import ru.dns.vitrina.server.storage.UserStorage;
-
-import java.util.ArrayList;
-import java.util.List;
+import ru.dns.vitrina.server.service.UserService;
+import ru.dns.vitrina.server.storage.dao.UserDatabaseStorage;
 
 @RestController
+@RequiredArgsConstructor
+@Slf4j
 @RequestMapping
 public class UserController {
-    UserStorage userStorage = new UserStorage();
-//    private final UserService userService;
-//
+    private final UserService userService;
+
+
     @CrossOrigin
     @PostMapping("/sign-up")
     public User createUser(@RequestBody User user) {
-        //log.info("GET Запрос на создание пользователя {}", user);
+        log.info("GET Запрос на создание пользователя {}", user);
         System.out.println(user.toString());
-        return userStorage.createUser(user);
+        return userService.create(user);
     }
 //
 //    @PutMapping
@@ -31,7 +33,7 @@ public class UserController {
     @PostMapping("/sign-in")
     public User getUser(@RequestBody User user) {
         //log.info("GET Запрос на поиск пользователя по id {}", id);
-        return userStorage.getUser(user);
+        return userService.getUser(user);
     }
 //
 //    @GetMapping()
