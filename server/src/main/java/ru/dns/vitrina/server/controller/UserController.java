@@ -1,22 +1,27 @@
 package ru.dns.vitrina.server.controller;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import ru.dns.vitrina.server.model.User;
+import ru.dns.vitrina.server.service.UserService;
+import ru.dns.vitrina.server.storage.dao.UserDatabaseStorage;
 
 @RestController
-@RequestMapping("/login")
+@RequiredArgsConstructor
+@Slf4j
+@RequestMapping
 public class UserController {
-    List<String> name = new ArrayList<>();
-//    private final UserService userService;
-//
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public User createUser(@RequestBody @Validated({Create.class, Default.class}) User user) {
-//        log.info("GET Запрос на создание пользователя {}", user);
-//        return userService.createUser(user);
-//    }
+    private final UserService userService;
+
+
+    @CrossOrigin
+    @PostMapping("/sign-up")
+    public User createUser(@RequestBody User user) {
+        log.info("GET Запрос на создание пользователя {}", user);
+        System.out.println(user.toString());
+        return userService.create(user);
+    }
 //
 //    @PutMapping
 //    public User updateUser(@RequestBody @Validated({Update.class, Default.class}) User user) {
@@ -25,11 +30,10 @@ public class UserController {
 //    }
 //
     @CrossOrigin
-    @GetMapping
-    public List<String> get() {
+    @PostMapping("/sign-in")
+    public User getUser(@RequestBody User user) {
         //log.info("GET Запрос на поиск пользователя по id {}", id);
-        name.add("userService.getUser(id);");
-        return name;
+        return userService.getUser(user);
     }
 //
 //    @GetMapping()

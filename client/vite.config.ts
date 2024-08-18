@@ -7,7 +7,8 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      pages: path.resolve('src/')
+      pages: path.resolve('src/pages/index'),
+      shared: path.resolve('src/shared/index'),
     },
   },
 })

@@ -1,0 +1,1 @@
+export { Reg } from "./view"
