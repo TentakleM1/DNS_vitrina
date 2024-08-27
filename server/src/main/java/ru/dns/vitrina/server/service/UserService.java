@@ -7,6 +7,8 @@ import org.springframework.validation.annotation.Validated;
 import ru.dns.vitrina.server.model.User;
 import ru.dns.vitrina.server.storage.inheritance.UserStorage;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @Validated
@@ -34,5 +36,9 @@ public class UserService {
         String lastName = user.getLastName();
         String password = user.getPassword();
         return userStorage.getUserSign(lastName, password);
+    }
+
+    public List<User> getUsers() {
+        return userStorage.getUsers();
     }
 }

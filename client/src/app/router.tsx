@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Login, Reg } from "../pages";
+import {Login, Map, Reg} from "../pages";
 
 export const routers = createBrowserRouter([
     {
@@ -7,8 +7,12 @@ export const routers = createBrowserRouter([
         element: <Login /> ,
     },
     {
-        path: "/sign-up",
+        path: "/create-user",
         element: <Reg />
+    },
+    {
+      path: '/map',
+      element: <Map />
     }
 
 ])

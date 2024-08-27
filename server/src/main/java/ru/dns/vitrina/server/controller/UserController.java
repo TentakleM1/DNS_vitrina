@@ -2,10 +2,15 @@ package ru.dns.vitrina.server.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.dns.vitrina.server.model.User;
 import ru.dns.vitrina.server.service.UserService;
-import ru.dns.vitrina.server.storage.dao.UserDatabaseStorage;
+import ru.dns.vitrina.server.validator.group.Create;
+import ru.dns.vitrina.server.validator.group.Default;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,13 +20,13 @@ public class UserController {
     private final UserService userService;
 
 
-    @CrossOrigin
-    @PostMapping("/sign-up")
-    public User createUser(@RequestBody User user) {
-        log.info("GET Запрос на создание пользователя {}", user);
-        System.out.println(user.toString());
-        return userService.create(user);
-    }
+//    @CrossOrigin
+//    @PostMapping("/sign-up")
+//    public User logUser(@RequestBody User user) {
+//        log.info("GET Запрос на создание пользователя {}", user);
+//        System.out.println(user.toString());
+//        return userService.create(user);
+//    }
 //
 //    @PutMapping
 //    public User updateUser(@RequestBody @Validated({Update.class, Default.class}) User user) {
@@ -32,21 +37,29 @@ public class UserController {
     @CrossOrigin
     @PostMapping("/sign-in")
     public User getUser(@RequestBody User user) {
-        //log.info("GET Запрос на поиск пользователя по id {}", id);
+        log.info("POST Запрос на пользователя");
         return userService.getUser(user);
     }
+
+    @CrossOrigin
+    @PostMapping("/create-user")
+    public User createUser(@RequestBody User user) {
+        log.info("POST Запрос на создание пользователей");
+        return userService.create(user);
+    }
 //
-//    @GetMapping()
-//    public List<User> getUsers() {
-//        log.info("GET Запрос на список пользователей");
-//        return userService.getUsers();
-//    }
-//
-//    @GetMapping("/{id}/friends")
-//    public List<User> getFriends(@PathVariable("id") @Positive int id) {
-//        log.info("GET Запрос на список друзей пользователя id {}", id);
-//        return userService.getAllFriends(id);
-//    }
+    @CrossOrigin
+    @PostMapping("/logout")
+    public void logout() {
+        log.info("POST Запрос на выход пользователя");
+        HttpStatus.OK.value();
+    }
+
+    @CrossOrigin
+    @GetMapping("/users")
+    public List<User> getUsers(){
+        return userService.getUsers();
+    }
 //
 //    @GetMapping("/{id}/friends/common/{otherId}")
 //    public List<User> getCommonFriends(@PathVariable("id") @Positive long id, @PathVariable("otherId") @Positive long otherId) {
