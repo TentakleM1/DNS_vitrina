@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const fetchPost = async (data) => {
   try {
-    const response = await fetch("http://localhost:9090/sign-up", {
+    const response = await fetch("http://localhost:9090/create-user", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -17,9 +17,9 @@ const fetchPost = async (data) => {
 
     const result = await response.json();
 
-    console.log(result);
+    console.log('created user:', result);
   } catch (error) {
-    throw new Error(`Error: not workig GET: ${error}`);
+    throw new Error(`Error: not workig POST: ${error}`);
   }
 };
 
@@ -29,9 +29,12 @@ export const Reg: React.FC = () => {
 
   const handle = async (e) => {
     e.preventDefault();
+
     const data = {
-        login: formData.current[0].value,
-        password: formData.current[1].value
+        name: formData.current[0].value,
+        password: formData.current[1].value,
+        lastName: formData.current[2].value,
+        root: formData.current[3].checked,
     };
 
     await fetchPost(data);
@@ -40,18 +43,20 @@ export const Reg: React.FC = () => {
     <main>
       <div>
         <section>
-          <h1>Registration</h1>
+          <h1>Create User</h1>
         </section>
         <form ref={formData}>
-          <input type="text" name="login" />
-          <input type="password" name="password" />
-          <button onClick={handle}>sign un</button>
+          <input type="text" name="name" placeholder={'name'}/>
+          <input type="password" name="password" placeholder={'password'}/>
+          <input type="text" name="lastName" placeholder={'last name'}/>
+          <input type="checkbox"/>
+          <button onClick={handle}>Create</button>
           <button
-            onClick={() => {
-              navigate("/");
-            }}
+              onClick={() => {
+                navigate("/map");
+              }}
           >
-            sign in
+            Back
           </button>
         </form>
       </div>

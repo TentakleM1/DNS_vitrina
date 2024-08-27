@@ -13,7 +13,9 @@ import ru.dns.vitrina.server.storage.inheritance.UserStorage;
 
 
 import java.sql.PreparedStatement;
-import java.util.Objects;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -21,6 +23,7 @@ import java.util.Objects;
 public class UserDatabaseStorage implements UserStorage {
     private final JdbcTemplate jdbcTemplate;
 
+    @Override
     public User createUser(User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String sqlQuery = "INSERT INTO users (name, password, last_name,root) VALUES ( ?, ?, ?, ?)";
@@ -87,6 +90,23 @@ public class UserDatabaseStorage implements UserStorage {
             return userSeach;
         }
         throw new NotFoundException("Пользователь с фамилией и паролем не найден " + lastName + " " + password);
+    }
+
+    @Override
+    public List<User> getUsers() {
+        String sqlQuery = "SELECT * FROM users;";
+        List<User> usersFromDb = jdbcTemplate.query(sqlQuery, this::mapRowToUser);
+        return usersFromDb;
+    }
+
+    private User mapRowToUser(ResultSet rs, int rowNum) throws SQLException {
+
+        return User.builder()
+                .name(rs.getString("NAME"))
+                .password(rs.getString("PASSWORD"))
+                .lastName(rs.getString("LAST_NAME"))
+                .root(rs.getBoolean("ROOT"))
+                .build();
     }
 
 }
