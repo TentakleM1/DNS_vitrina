@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-const fetchPost = async (data) => {
+const fetchPost = async (data: Record<string, string>) => {
   try {
     const response = await fetch("http://localhost:9090/sign-in", {
       method: "post",
@@ -15,9 +15,8 @@ const fetchPost = async (data) => {
       throw new Error(`Error! status: ${response.status}`);
     }
 
-    const result = await response.json();
+    return await response.json();
 
-    console.log(result);
   } catch (error) {
     throw new Error(`Error: not workig GET: ${error}`);
   }
@@ -27,14 +26,18 @@ export const Login: React.FC = () => {
   const formData = useRef(null);
   const navigate = useNavigate();
 
-  const handle = async (e) => {
+  const handle = async (e): Promise<void> => {
     e.preventDefault();
-    const data = {
-        login: formData.current[0].value,
+    const data: {lastName: string, password: string} = {
+        lastName: formData.current[0].value,
         password: formData.current[1].value
     };
 
-    await fetchPost(data);
+    const result = await fetchPost(data);
+
+    if (!result.ok) {
+      navigate("/map")
+    }
   };
 
   return (
