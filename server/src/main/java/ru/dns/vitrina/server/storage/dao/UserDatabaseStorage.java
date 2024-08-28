@@ -102,6 +102,7 @@ public class UserDatabaseStorage implements UserStorage {
     private User mapRowToUser(ResultSet rs, int rowNum) throws SQLException {
 
         return User.builder()
+                .id(rs.getLong("ID"))
                 .name(rs.getString("NAME"))
                 .password(rs.getString("PASSWORD"))
                 .lastName(rs.getString("LAST_NAME"))
