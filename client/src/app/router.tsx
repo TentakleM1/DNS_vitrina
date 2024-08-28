@@ -14,5 +14,4 @@ export const routers = createBrowserRouter([
       path: '/map',
       element: <Map />
     }
-
 ])

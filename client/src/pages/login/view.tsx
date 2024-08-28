@@ -41,24 +41,35 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <main>
-      <div>
+    <main className="h-screen flex justify-center items-center">
+      <section className="w-[300px] h-[350px] rounded-xl bg-orange-300 flex flex-col justify-around items-center">
         <section>
-          <h1>Login</h1>
+          <h1 className="text-4xl">Вход</h1>
         </section>
-        <form ref={formData}>
-          <input type="text" name="login" value={'Поливаева'} />
-          <input type="password" name="password" value={123456} />
-          <button onClick={handle}>sign in</button>
-          <button
-            onClick={() => {
-              navigate("/sign-up");
-            }}
-          >
-            sign up
-          </button>
-        </form>
-      </div>
+        <section className="w-[200px]">
+          <form ref={formData}>
+            <section className="h-[300px] flex flex-col items-center justify-around">
+                <input type="text" name="login" className="p-2 border-2 border-blue-950 bg-gray-50 focus:border-blue-800 hover:border-blue-800"/>
+                <input type="password" name="password" className="p-2 border-2 border-blue-950 bg-gray-50 focus:border-blue-800 hover:border-blue-800"/>
+              <section className="text-white">
+                <section>
+                  <button onClick={handle} className="w-[100px] bg-blue-950 rounded p-2 mt-2">Войти</button>
+                </section>
+                <section>
+                  <button
+                      className="w-[100px] border border-blue-950 rounded p-2 mt-2"
+                      onClick={() => {
+                        navigate("/sign-up");
+                      }}
+                  >
+                    sign up
+                  </button>
+                </section>
+              </section>
+            </section>
+          </form>
+        </section>
+      </section>
     </main>
   );
 };
