@@ -1,17 +1,26 @@
 import React, {useRef, useState} from "react";
+import { animated, useSpring } from "react-spring";
 
 export const Map: React.FC = () => {
     const [ isModal, setIsModal ] = useState(false);
     const cnv  = useRef(null)
 
+    const props = useSpring({
+        opacity: isModal ? 1 : 0,
+        config: {
+            tension: 200, 
+            friction: 20 
+          }
+    })
+
     const handleModal = () => {
         setIsModal(!isModal)
     }
-
+    
     return(
         <section className="w-screen h-screen flex flex-col justify-between" >
             <header className="flex flex-row justify-between">
-                <div className={isModal ?
+                <animated.div className={isModal ?
                     "absolute top-2 left-2 w-[300px] h-[300px] bg-amber-50 border rounded-xl"
                     :
                     "w-10 h-10 border-2 rounded-xl m-2 p-2 flex flex-col justify-around"
@@ -36,7 +45,7 @@ export const Map: React.FC = () => {
                            </>
                     }
 
-                </div>
+                </animated.div>
                 <div className="m-2 flex flex-row items-center">
                     <div>
                         <input type="text" className="border rounded-3xl p-2" placeholder='поиск витрин'/>
