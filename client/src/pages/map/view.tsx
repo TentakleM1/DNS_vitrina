@@ -204,8 +204,8 @@ export const Map: React.FC = () => {
     if (canvas) {
       const ctx = canvas.getContext("2d");
       if (ctx) {
-        getBloks()   
-        ctx.fillRect(blocks.x, blocks.y, blocks.length, blocks.height)
+        // getBloks()
+        // ctx.fillRect(blocks.x, blocks.y, blocks.length, blocks.height)
       }
     }
   }, [blocks]);
