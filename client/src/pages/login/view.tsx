@@ -41,8 +41,8 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <main className="h-screen flex justify-center items-center">
-      <section className="w-[300px] h-[350px] rounded-xl bg-orange-300 flex flex-col justify-around items-center">
+    <main className="h-screen w-screen flex justify-center items-center">
+      <section className="z-50 w-[300px] h-[350px] rounded-xl bg-orange-300 flex flex-col justify-around items-center">
         <section>
           <h1 className="text-4xl">Вход</h1>
         </section>
@@ -56,20 +56,15 @@ export const Login: React.FC = () => {
                   <button onClick={handle} className="w-[100px] bg-blue-950 rounded p-2 mt-2">Войти</button>
                 </section>
                 <section>
-                  <button
-                      className="w-[100px] border border-blue-950 rounded p-2 mt-2"
-                      onClick={() => {
-                        navigate("/sign-up");
-                      }}
-                  >
-                    sign up
-                  </button>
                 </section>
               </section>
             </section>
           </form>
         </section>
       </section>
+      <div className="absolute blur-sm">
+        <img src="https://storage.weacom.ru/v8112/1f/omcwAdvboxA.jpg" alt="" />
+      </div>
     </main>
   );
 };
