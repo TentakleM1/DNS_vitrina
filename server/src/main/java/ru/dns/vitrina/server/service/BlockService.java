@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.dns.vitrina.server.model.Block;
 import ru.dns.vitrina.server.storage.inheritance.BlockStorage;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class BlockService {
     private final BlockStorage blockStorage;
 
-    public Map<Integer, Block> getAllBlock(){
+    public List<Block> getAllBlock(){
         return blockStorage.getAllBlock();
     }
 

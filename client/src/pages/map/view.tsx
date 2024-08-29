@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // const fetchPost = async (data: Record<string, string>, endpoint: string) => {
@@ -176,34 +176,39 @@ import { useNavigate } from "react-router-dom";
 //     )
 // }
 
-const getBloks = async () => {
-  try {
-    const resolve = await fetch('http://localhost:9090/bloks')
 
-    if(resolve.status === 200) {
-      const result = resolve.json()
-      console.log('Bloks:', result)
-    }
-  } catch (error) {
-    console.error(`Error get bloks: ${error}`)
-  }
-  
-}
 
 export const Map: React.FC = () => {
   const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [blocks, setBlocks] = useState({})
+
+  const getBloks = async () => {
+    try {
+      const resolve = await fetch('http://localhost:9090/blocks')
+  
+      if(resolve.status === 200) {
+        const result = await resolve.json()
+
+        setBlocks(result[1])
+
+      }
+    } catch (error) {
+      console.error(`Error get bloks: ${error}`)
+    }
+    
+  }
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
       const ctx = canvas.getContext("2d");
       if (ctx) {
-        getBloks()
-        ctx.fillRect(0, 0, 200, 50);
+        // getBloks()
+        // ctx.fillRect(blocks.x, blocks.y, blocks.length, blocks.height)
       }
     }
-  }, []);
+  }, [blocks]);
 
   return (
     <section className="w-screen h-screen flex flex-col justify-between overflow-hidden">

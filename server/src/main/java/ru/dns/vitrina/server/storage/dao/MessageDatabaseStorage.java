@@ -10,10 +10,7 @@ import ru.dns.vitrina.server.storage.inheritance.MessageStorage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -23,14 +20,9 @@ public class MessageDatabaseStorage implements MessageStorage {
     //static final int SIZE_MPA = 5;
 
     @Override
-    public Map<Integer, Message> getAllMessage() {
-        Map<Integer, Message> allMessage = new HashMap<>();
+    public List<Message> getAllMessage() {
         String sqlQuery = "SELECT * FROM massege;";
-        List<Message> messagesFromDb = jdbcTemplate.query(sqlQuery, this::mapRowToMessage);
-        for (Message message : messagesFromDb) {
-            allMessage.put(message.getId(), message);
-        }
-        return allMessage;
+        return jdbcTemplate.query(sqlQuery, this::mapRowToMessage);
     }
 
     @Override

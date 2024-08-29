@@ -22,14 +22,9 @@ public class BlockDatabaseStorage implements BlockStorage {
     private final JdbcTemplate jdbcTemplate;
 
     @Override
-    public Map<Integer, Block> getAllBlock() {
-        Map<Integer, Block> allBlock = new HashMap<>();
+    public List<Block> getAllBlock() {
         String sqlQuery = "SELECT * FROM block;";
-        List<Block> blockFromDb = jdbcTemplate.query(sqlQuery, this::mapRowToBlock);
-        for (Block block : blockFromDb) {
-            allBlock.put(block.getId(), block);
-        }
-        return allBlock;
+        return jdbcTemplate.query(sqlQuery, this::mapRowToBlock);
     }
 
     @Override

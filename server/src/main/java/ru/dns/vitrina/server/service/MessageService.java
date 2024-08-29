@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.dns.vitrina.server.model.Message;
 import ru.dns.vitrina.server.storage.inheritance.MessageStorage;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class MessageService {
     private final MessageStorage messageStorage;
 
-    public Map<Integer, Message> getAllMessage(){
+    public List<Message> getAllMessage(){
         return messageStorage.getAllMessage();
     }
 
