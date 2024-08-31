@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setUser } from "../../shared/store/store";
 
 const fetchPost = async (data: Record<string, string>) => {
   try {
@@ -25,7 +27,10 @@ const fetchPost = async (data: Record<string, string>) => {
 export const Login: React.FC = () => {
   const formData = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
 
+  console.log(user)
   const handle = async (e): Promise<void> => {
     e.preventDefault();
     const data: {lastName: string, password: string} = {
@@ -34,9 +39,10 @@ export const Login: React.FC = () => {
     };
 
     const result = await fetchPost(data);
+    // dispatch(setUser(user))
 
     if (!result.ok) {
-      navigate("/map")
+      // navigate("/map")
     }
   };
 

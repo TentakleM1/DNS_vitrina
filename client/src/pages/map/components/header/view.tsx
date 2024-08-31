@@ -27,7 +27,7 @@ export const Header: React.FC = (props) => {
                 className="
                 btn-header
                 border 
-                rounded p-2 
+                rounded-xl p-2 
                 bg-none 
                 duration-700
                 hover:bg-cyan-950 
@@ -45,7 +45,7 @@ export const Header: React.FC = (props) => {
                 className="
                 btn-header
                 border 
-                rounded p-2 
+                rounded-xl p-2 
                 bg-none 
                 duration-700
                 hover:bg-cyan-950 
@@ -66,12 +66,13 @@ export const Header: React.FC = (props) => {
                 className="
                 btn-header
                 border 
-                rounded p-2 
+                rounded-xl p-2 
                 bg-none 
                 duration-700
                 hover:bg-red-700
                 hover:scale-110
               "
+              onClick={() => navigate('/')}
               >
                 Выйти
               </button>

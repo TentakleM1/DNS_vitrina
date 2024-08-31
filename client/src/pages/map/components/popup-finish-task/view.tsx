@@ -5,7 +5,7 @@ export const PopupFinishTask: React.FC = (props) => {
   return (
     <div
       className={` duration-500 ${
-        isPopup ? "hidden" : "pop"
+        isPopup ? "" : "hidden"
       } h-screen w-screen absolute top-0 bg-black/[.3] flex justify-center items-center`}
     >
       <div className="w-[300px] h-[150px] bg-slate-200 flex flex-col justify-center items-center gap-5 border rounded">
