@@ -1,0 +1,77 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+export const Header: React.FC = () => {
+  const navigate = useNavigate();
+
+  return (
+    <header className="flex justify-between items-center p-6 bg-orange-400">
+      <section>
+        <span className="text-5xl font-bold">DNS Vitrina</span>
+      </section>
+      <section className="flex items-center gap-8">
+        <section>
+          <button className="w-14">
+            <img
+              src="https://i.pinimg.com/originals/0a/dd/87/0add874e1ea0676c4365b2dd7ddd32e3.jpg"
+              className="rounded-full"
+              alt=""
+            />
+          </button>
+        </section>
+        <nav>
+          <ul className="text-white">
+            <li className="inline-block mr-4">
+              <button
+                className="
+                btn-header
+                border 
+                rounded p-2 
+                bg-none 
+                duration-700
+                hover:bg-cyan-950 
+                hover:scale-110
+              "
+                onClick={() => {
+                  navigate("/create-user");
+                }}
+              >
+                Создать УСМ
+              </button>
+            </li>
+            <li className="inline-block  mr-4">
+              <button
+                className="
+                btn-header
+                border 
+                rounded p-2 
+                bg-none 
+                duration-700
+                hover:bg-cyan-950 
+                hover:scale-110
+              "
+              >
+                Создать задачу
+              </button>
+            </li>
+            <li className="inline-block">
+              <button
+                className="
+                btn-header
+                border 
+                rounded p-2 
+                bg-none 
+                duration-700
+                hover:bg-red-700
+                hover:scale-110
+              "
+              >
+                Выйти
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </section>
+    </header>
+  );
+};

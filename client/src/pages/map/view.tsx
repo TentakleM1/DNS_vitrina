@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Footer, Header, Main } from "./components";
 
 // const fetchPost = async (data: Record<string, string>, endpoint: string) => {
 //   try {
@@ -177,103 +178,11 @@ import { useNavigate } from "react-router-dom";
 // }
 
 export const Map: React.FC = () => {
-  const navigate = useNavigate();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [blocks, setBlocks] = useState({});
-
-  const getBloks = async () => {
-    try {
-      const resolve = await fetch("http://localhost:9090/blocks");
-
-      if (resolve.status === 200) {
-        const result = await resolve.json();
-
-        setBlocks(result[1]);
-      }
-    } catch (error) {
-      console.error(`Error get bloks: ${error}`);
-    }
-  };
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext("2d");
-      if (ctx) {
-        // getBloks()
-        ctx.fillStyle = "#5490de"
-        ctx.fillRect(0, 10, 30, 400)
-        ctx.fillStyle = "#781f19"
-        ctx.fillRect(30, 460, 570, 30)
-      }
-    }
-  }, [blocks]);
-
   return (
     <section className="w-screen h-screen flex flex-col justify-between overflow-x-hidden">
-      <header className="flex justify-between items-center p-6 bg-orange-400">
-        <section>
-          <button className="w-14">
-            <img src="https://i.pinimg.com/originals/0a/dd/87/0add874e1ea0676c4365b2dd7ddd32e3.jpg" className="rounded-full" alt="" />
-          </button>
-        </section>
-        <nav>
-          <ul>
-            <li className="inline-block mr-4">
-              <button
-                className="border rounded p-2 bg-slate-300"
-                onClick={() => {
-                  navigate("/create-user");
-                }}
-              >
-                Create user
-              </button>
-            </li>
-            <li className="inline-block  mr-4">
-              <button className="border rounded p-2 bg-slate-300">
-                Create task
-              </button>
-            </li>
-            <li className="inline-block">
-              <button className="border rounded p-2 bg-slate-300">
-                logout
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main className="h-full flex flex-row items-center justify-around w-full gap-2">
-        <div className="h-[600px] p-2 overflow-x-hidden overflow-y-scroll flex-col flex gap-2">
-          <section className="w-[300px] h-[200px] flex-none border flex rounded-xl">
-            <div className="w-20 h-20 m-2">
-              <img
-                src="https://i.pinimg.com/originals/0a/dd/87/0add874e1ea0676c4365b2dd7ddd32e3.jpg"
-                alt="usm"
-                className="rounded-full"
-              />
-            </div>
-          </section>
-        </div>
-        <div className="w-[1300px] h-[500px] border-4 rounded-xl">
-          <canvas
-            ref={canvasRef}
-            width={1200}
-            height={500}
-          ></canvas>
-        </div>
-      </main>
-      <footer>
-        <div className="h-[150px] m-2 p-2 border-2 rounded-xl overflow-x-scroll overflow-y-hidden flex flex-row gap-1">
-          <section className="border rounded flex-none w-[200px] p-2 cursor-pointer">
-            <h1>Витрина КБТ:</h1>
-            <p>Выстовить товар со склада</p>
-            <time>04.08.2024</time>
-          </section>
-        </div>
-        <div className="bg-slate-900 text-slate-300 flex justify-center">
-          <span>creaty by front dima back yakov 2024</span>
-        </div>
-      </footer>
+      <Header />
+      <Main />
+      <Footer />
     </section>
   );
 };
