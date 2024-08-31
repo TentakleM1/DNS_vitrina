@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Header: React.FC = () => {
+export const Header: React.FC = (props) => {
+  const { isTask, handle } = props
   const navigate = useNavigate();
 
   return (
@@ -50,8 +51,14 @@ export const Header: React.FC = () => {
                 hover:bg-cyan-950 
                 hover:scale-110
               "
+                onClick={handle}
               >
-                Создать задачу
+                {
+                  isTask ?
+                      'Карта'
+                      :
+                      'Создать задачу'
+                }
               </button>
             </li>
             <li className="inline-block">

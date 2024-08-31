@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
+import {CreateTusk} from "../create-tusk";
 
-export const Main: React.FC = () => {
+export const Main: React.FC = (props) => {
+    const { isTask } = props
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const [blocks, setBlocks] = useState({});
 
@@ -33,21 +35,50 @@ export const Main: React.FC = () => {
     }, [blocks]);
 
   return (
-    <main className="h-full flex flex-row items-center justify-around w-full gap-2">
-      <div className="h-[600px] p-2 overflow-x-hidden overflow-y-scroll flex-col flex gap-2">
-        <section className="w-[300px] h-[200px] flex-none border flex rounded-xl duration-500 hover:shadow-lg">
-          <div className="w-20 h-20 m-2">
-            <img
-              src="https://i.pinimg.com/originals/0a/dd/87/0add874e1ea0676c4365b2dd7ddd32e3.jpg"
-              alt="usm"
-              className="rounded-full"
-            />
-          </div>
-        </section>
-      </div>
-      <div className="w-[1100px] h-[500px] border-4 border-orange-400 rounded-xl">
-        <canvas ref={canvasRef} width={1100} height={500}></canvas>
-      </div>
+    <main className="h-[40%] flex flex-row items-center justify-around w-full gap-2">
+        {
+            isTask ?
+                <CreateTusk />
+                :
+                <>
+                    <div className="h-[400px] p-2 overflow-x-hidden overflow-y-scroll flex-col flex gap-2">
+                        <section
+                            className="w-[300px] h-[100px] flex-none flex flex-col items-center gap-2 overflow-hidden border border-orange-500 cursor-pointer rounded-xl duration-500 hover:h-[250px] hover: hover:shadow-lg hover:bg-orange-500 hover:text-amber-50">
+                            <div className="flex justify-center items-center">
+                                <div className="w-20 h-20 m-2">
+                                    <img
+                                        src="https://i.pinimg.com/originals/0a/dd/87/0add874e1ea0676c4365b2dd7ddd32e3.jpg"
+                                        alt="usm"
+                                        className="rounded-full"
+                                    />
+                                </div>
+                                <div>
+                <span>
+                    Ерошенко Дмитрий
+                </span>
+                                </div>
+                            </div>
+                            <div>
+                                <ul>
+                                    <li>
+                                        КБТ
+                                    </li>
+                                    <li>
+                                        Мониторы
+                                    </li>
+                                    <li>
+                                        Мобильные Аксы
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                    <div
+                        className="w-[1000px] h-[400px] border-4 border-orange-400 rounded-xl overflow-y-hidden overflow-x-auto shadow-2xl">
+                        <canvas ref={canvasRef} width={1000} height={400}></canvas>
+                    </div>
+                </>
+        }
     </main>
   );
 };

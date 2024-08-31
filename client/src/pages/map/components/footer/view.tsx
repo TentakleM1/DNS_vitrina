@@ -9,9 +9,9 @@ export const Footer: React.FC = () => {
   }
 
   return (  
-    <footer>
+    <footer className="border border-t-orange-500">
       <PopupFinishTask isPopup={isPopup} handle={handle} />
-      <div className="h-[150px] m-2 p-2 border-2 rounded-xl overflow-x-scroll overflow-y-hidden flex flex-row gap-1">
+      <div className="h-[150px] m-2 p-2 overflow-x-scroll overflow-y-hidden flex flex-row gap-1">
         <section className="border rounded flex-none w-[200px] p-2 cursor-pointer duration-500 hover:shadow-lg" onClick={handle}>
           <h1>Витрина КБТ:</h1>
           <p>Выстовить товар со склада</p>

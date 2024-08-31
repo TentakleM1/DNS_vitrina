@@ -178,10 +178,16 @@ import { Footer, Header, Main } from "./components";
 // }
 
 export const Map: React.FC = () => {
+    const [ isTask, setIsTask ] = useState<boolean>(false);
+
+    const handle = () => {
+        setIsTask(!isTask);
+    }
+
   return (
     <section className="w-screen h-screen flex flex-col justify-between overflow-x-hidden">
-      <Header />
-      <Main />
+      <Header isTask={isTask} handle={handle} />
+      <Main isTask={isTask} />
       <Footer />
     </section>
   );
