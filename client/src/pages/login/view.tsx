@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../shared/store/user/userSlice";
@@ -47,7 +47,7 @@ export const Login: React.FC = () => {
       navigate("/map")
     }
   };
-
+  // #5a578b #ff7235
   return (
     <main className="h-screen w-screen flex justify-center items-center">
       <section className="z-50 w-[300px] h-[350px] rounded-xl bg-neutral-800/50 flex flex-col justify-around items-center text-slate-50">
@@ -57,11 +57,11 @@ export const Login: React.FC = () => {
         <section className="w-[200px]">
           <form ref={formData}>
             <section className="h-[250px] flex flex-col items-center justify-around">
-                <input type="text" name="login" placeholder="Фамилия" className="p-2 border-2 rounded-md border-orange-600 bg-amber-900/70 focus:border-orange-400 hover:border-orange-400"/>
-                <input type="password" name="password" placeholder="Пароль" className="p-2 border-2 rounded-md border-orange-600 bg-amber-900/70 duration-500 focus:border-orange-400 hover:border-orange-400"/>
+                <input type="text" name="login" placeholder="Фамилия" className="p-2 border-2 rounded-md border-[#ff7235] bg-amber-900/70 hover:border-orange-400"/>
+                <input type="password" name="password" placeholder="Пароль" className="p-2 border-2 rounded-md border-[#ff7235] bg-amber-900/70 duration-500 hover:border-orange-400"/>
               <section>
                 <section>
-                  <button onClick={handle} className="w-[100px] bg-orange-700 rounded p-2 mt-2 duration-500 hover:bg-orange-400">Войти</button>
+                  <button onClick={handle} className="w-[100px] bg-[#ff7235] rounded p-2 mt-2 duration-500 hover:bg-[#5a578b]">Войти</button>
                 </section>
                 <section>
                 </section>

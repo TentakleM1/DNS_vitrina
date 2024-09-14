@@ -2,19 +2,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 interface HeaderProps {
-  isTask: boolean
-  isStuff: boolean
-  handle: (click: string) => void
+  isTask: boolean;
+  isStuff: boolean;
+  handle: (click: string) => void;
 }
 
 export const Header: React.FC<HeaderProps> = (props) => {
-  const { isTask, isStuff, handle } = props
+  const { isTask, isStuff, handle } = props;
   const navigate = useNavigate();
 
   return (
-    <header className="z-50 flex justify-between items-center p-6 bg-orange-400">
+    <header className="z-50 flex justify-between items-center p-6 bg-[#ff7235]">
       <section>
-        <span className="text-5xl font-bold">DNS Vitrina</span>
+        <span className="text-white text-5xl font-bold">Витрина</span>
       </section>
       <section className="flex items-center gap-8">
         <section>
@@ -32,56 +32,49 @@ export const Header: React.FC<HeaderProps> = (props) => {
               <button
                 className="
                 btn-header
-                border 
-                rounded-xl p-2 
+                border
+                border-[#5a578b] 
+                rounded-3xl p-2 
                 bg-none 
                 duration-700
-                hover:bg-cyan-950 
+                hover:bg-[#5a578b]
                 hover:scale-110
               "
-                onClick={() => handle('stuff')}
+                onClick={() => handle("stuff")}
               >
-                {
-                  isStuff ?
-                  'Карта'
-                  :
-                  'Создать сотрудника'
-                }
+                {isStuff ? "Карта" : "Создать сотрудника"}
               </button>
             </li>
             <li className="inline-block  mr-4">
               <button
                 className="
                 btn-header
-                border 
-                rounded-xl p-2 
+                border
+                border-[#5a578b] 
+                rounded-3xl p-2 
                 bg-none 
                 duration-700
-                hover:bg-cyan-950 
+                hover:bg-[#5a578b] 
                 hover:scale-110
               "
-                onClick={() => handle('task')}
+                onClick={() => handle("task")}
               >
-                {
-                  isTask ?
-                      'Карта'
-                      :
-                      'Создать задачу'
-                }
+                {isTask ? "Карта" : "Создать задачу"}
               </button>
             </li>
             <li className="inline-block">
               <button
                 className="
                 btn-header
-                border 
-                rounded-xl p-2 
+                border
+                border-[#9b2f00] 
+                rounded-3xl p-2 
                 bg-none 
                 duration-700
-                hover:bg-red-700
+                hover:bg-[#9b2f00]
                 hover:scale-110
               "
-              onClick={() => navigate('/')}
+                onClick={() => navigate("/")}
               >
                 Выйти
               </button>

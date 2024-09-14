@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "../../../../shared/store/store";
 
-const staff = [
-  "Ерошенко Дмитрий",
-  "Малеева Виолета",
-  "Хохряков Никита",
-  "Трофимов Василий",
-  "Шестаков Алексей",
-];
 const tasks = [
   "актуальность термака",
   "проверить воблеры",
@@ -23,11 +16,11 @@ export const CreateTusk: React.FC = () => {
   const { stuff } = useSelector((state) => state);
 
   const choiceUsm = (index: number) => {
-    stuff.stuff.forEach((usm => {
-      if(usm.id == index) {
+    stuff.stuff.forEach((usm) => {
+      if (usm.id == index) {
         setName(`${usm.lastName} ${usm.name}`);
       }
-    }))
+    });
   };
 
   const choiceStorefront = (index: number) => {
@@ -40,7 +33,7 @@ export const CreateTusk: React.FC = () => {
 
   return (
     <div className="h-[400px] w-full flex justify-around">
-      <div className="h-[400px] p-2 overflow-x-hidden overflow-y-scroll flex-col flex gap-2">
+      <div className="h-[400px]  p-2 overflow-x-hidden overflow-y-scroll flex-col flex gap-2">
         {stuff.stuff.map((card) => {
           if (card.root) return;
           return (
@@ -65,13 +58,23 @@ export const CreateTusk: React.FC = () => {
           );
         })}
       </div>
-      <section>
-        <div className="h-full w-[300px] flex flex-col gap-2 items-center p-2 bg-orange-500 rounded-2xl">
+      <section className="h-full w-[500px] flex flex-row justify-around gap-2 items-center p-2 bg-[#ff7235] rounded-3xl">
+        <div className="h-full w-[50%] border-r-4 border-[#5a578b] flex justify-center">
           <ul className="text-amber-50">
             {storefronts.map((item, index) => {
               return (
                 <li onClick={() => choiceStorefront(index)} className="m-2">
-                  <button className="w-[100px] border rounded-xl p-2 duration-500 hover:bg-amber-50 hover:text-orange-500">
+                  <button
+                    className="
+                      w-[100px] 
+                      border
+                      border-[#5a578b] 
+                      rounded-3xl p-2 
+                      bg-none 
+                      duration-700
+                    hover:bg-[#5a578b]
+                      hover:scale-110"
+                  >
                     {item}
                   </button>
                 </li>
@@ -79,14 +82,22 @@ export const CreateTusk: React.FC = () => {
             })}
           </ul>
         </div>
-      </section>
-      <section className="h-full w-[300px] border-2 rounded-2xl border-orange-500">
-        <div>
-          <ul className="text-orange-500">
+        <div className="h-full w-[50%] flex justify-center">
+          <ul className="text-amber-50">
             {tasks.map((task, index) => {
               return (
                 <li onClick={() => choiceTask(index)} className="m-2">
-                  <button className="rounded-xl p-2 duration-500 hover:bg-orange-500 hover:text-amber-50">
+                  <button
+                    className="
+                      w-[200px]
+                      border
+                      border-[#5a578b] 
+                      rounded-3xl p-2 
+                      bg-none 
+                      duration-700
+                    hover:bg-[#5a578b]
+                      hover:scale-110"
+                  >
                     {task}
                   </button>
                 </li>
@@ -95,9 +106,9 @@ export const CreateTusk: React.FC = () => {
           </ul>
         </div>
       </section>
-      <section className="h-full w-[300px] flex flex-col justify-between border-2 rounded-2xl border-orange-500">
+      <section className="h-full w-[300px] flex flex-col justify-between rounded-3xl bg-[#5a578b]">
         <div className="h-[200px] p-2">
-          <div className="h-[100px] border p-2 rounded">
+          <div className="h-[150px] bg-[#ff7235] p-2 rounded-2xl text-amber-50">
             <h1>УСМ: {name}</h1>
             <h3>Витрина: {storefront}</h3>
             <span>Задача: {task}</span>
@@ -105,7 +116,7 @@ export const CreateTusk: React.FC = () => {
         </div>
         <div className="h-[70px] p-2 flex justify-end">
           <div>
-            <button className="text-orange-500 rounded-xl p-2 duration-500 hover:bg-orange-500 hover:text-amber-50">
+            <button className="text-amber-50 rounded-3xl p-2 duration-500 hover:bg-orange-500 hover:scale-110">
               Сохранить
             </button>
           </div>
