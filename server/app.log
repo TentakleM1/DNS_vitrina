@@ -1,0 +1,17 @@
+2024-09-14 23:20:14,188 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.1.Final
+2024-09-14 23:20:14,202 INFO r.d.v.s.ServerApplication [main] Starting ServerApplication using Java 22.0.2 with PID 21097 (/Users/admin/Downloads/Без названия/server/target/classes started by admin in /Users/admin/Downloads/Без названия/server)
+2024-09-14 23:20:14,203 INFO r.d.v.s.ServerApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-09-14 23:20:14,682 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 9090 (http)
+2024-09-14 23:20:14,687 INFO o.a.c.h.Http11NioProtocol [main] Initializing ProtocolHandler ["http-nio-9090"]
+2024-09-14 23:20:14,687 INFO o.a.c.c.StandardService [main] Starting service [Tomcat]
+2024-09-14 23:20:14,687 INFO o.a.c.c.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-14 23:20:14,706 INFO o.a.c.c.C.[.[.[/] [main] Initializing Spring embedded WebApplicationContext
+2024-09-14 23:20:14,706 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 477 ms
+2024-09-14 23:20:14,798 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-09-14 23:20:14,919 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:./db/dnsDB user=SA
+2024-09-14 23:20:14,920 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-09-14 23:20:15,160 INFO o.a.c.h.Http11NioProtocol [main] Starting ProtocolHandler ["http-nio-9090"]
+2024-09-14 23:20:15,165 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 9090 (http) with context path '/'
+2024-09-14 23:20:15,170 INFO r.d.v.s.ServerApplication [main] Started ServerApplication in 1.115 seconds (process running for 1.621)
+2024-09-14 23:20:20,155 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-09-14 23:20:20,156 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
