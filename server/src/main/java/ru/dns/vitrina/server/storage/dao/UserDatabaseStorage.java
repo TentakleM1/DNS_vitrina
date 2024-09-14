@@ -8,7 +8,11 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 import ru.dns.vitrina.server.exception.NotFoundException;
+import ru.dns.vitrina.server.model.Block;
+import ru.dns.vitrina.server.model.Message;
 import ru.dns.vitrina.server.model.User;
+import ru.dns.vitrina.server.service.BlockService;
+import ru.dns.vitrina.server.service.MessageService;
 import ru.dns.vitrina.server.storage.inheritance.UserStorage;
 
 
@@ -22,6 +26,8 @@ import java.util.*;
 @RequiredArgsConstructor
 public class UserDatabaseStorage implements UserStorage {
     private final JdbcTemplate jdbcTemplate;
+    private final MessageService messageService;
+    private final BlockService blockService;
 
     @Override
     public User createUser(User user) {
@@ -97,6 +103,46 @@ public class UserDatabaseStorage implements UserStorage {
         String sqlQuery = "SELECT * FROM users;";
         List<User> usersFromDb = jdbcTemplate.query(sqlQuery, this::mapRowToUser);
         return usersFromDb;
+    }
+
+    @Override
+    public void addMessage(int messageId,long userId) {
+        Message message = messageService.getMessage(messageId).get();
+        User user = getUser(userId);
+        try {
+            String sqlQuery = "INSERT INTO MESSAGE_USER (MESSAGE_ID, USER_ID) VALUES (?, ?);";
+            jdbcTemplate.update(sqlQuery, messageId, userId);
+        } catch (Exception e) {
+            log.warn("Что то пошло не так с сообщениями", messageId, userId);
+        }
+    }
+
+    @Override
+    public void deleteMessage(int messageId, long userId) {
+        Message message = messageService.getMessage(messageId).get();
+        User user = getUser(userId);
+        String sqlQuery = "DELETE FROM MESSAGE_USER WHERE MESSAGE_ID = ? AND USER_ID = ?;";
+        jdbcTemplate.update(sqlQuery, messageId, userId);
+    }
+
+    @Override
+    public void addBlock (int blockId,long userId) {
+        Block block = blockService.getBlock(blockId).get();
+        User user = getUser(userId);
+        try {
+            String sqlQuery = "INSERT INTO BLOCK_USER (BLOCK_ID, USER_ID) VALUES (?, ?);";
+            jdbcTemplate.update(sqlQuery, blockId, userId);
+        } catch (Exception e) {
+            log.warn("Что то пошло не так с блоками", blockId, userId);
+        }
+    }
+
+    @Override
+    public void deleteBlock(int blockId, long userId) {
+        Block block = blockService.getBlock(blockId).get();
+        User user = getUser(userId);
+        String sqlQuery = "DELETE FROM BLOCK_USER WHERE BLOCK_ID = ? AND USER_ID = ?;";
+        jdbcTemplate.update(sqlQuery, blockId, userId);
     }
 
     private User mapRowToUser(ResultSet rs, int rowNum) throws SQLException {

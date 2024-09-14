@@ -41,4 +41,20 @@ public class UserService {
     public List<User> getUsers() {
         return userStorage.getUsers();
     }
+
+    public void addMessage(int messageId, long userId) {
+        userStorage.addMessage(messageId, userId);
+    }
+
+    public void deleteMessage(int messageId, long userId) {
+        userStorage.deleteMessage(messageId, userId);
+    }
+
+    public void addBlock(int blockId, long userId) {
+        userStorage.addBlock(blockId, userId);
+    }
+
+    public void deleteBlock(int blockId, long userId) {
+        userStorage.deleteBlock(blockId, userId);
+    }
 }

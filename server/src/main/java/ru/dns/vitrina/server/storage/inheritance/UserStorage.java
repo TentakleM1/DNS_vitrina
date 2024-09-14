@@ -16,4 +16,12 @@ public interface UserStorage {
     User getUserSign(String lastName, String password);
 
     List<User> getUsers();
+
+    void addMessage(int messageId,long userId);
+
+    void deleteMessage(int messageId, long userId);
+
+    void addBlock(int messageId,long userId);
+
+    void deleteBlock(int messageId, long userId);
 }
