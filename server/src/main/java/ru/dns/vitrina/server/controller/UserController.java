@@ -1,84 +1,81 @@
 package ru.dns.vitrina.server.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.dns.vitrina.server.model.User;
-import ru.dns.vitrina.server.service.UserService;
-import ru.dns.vitrina.server.validator.group.Create;
-import ru.dns.vitrina.server.validator.group.Default;
+import ru.dns.vitrina.server.controller.model.user.UserDto;
+import ru.dns.vitrina.server.controller.model.user.UserRequest;
+import ru.dns.vitrina.server.service.inheritance.UserService;
 
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
-@Slf4j
 @RequestMapping
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 
-
-//    @CrossOrigin
-//    @PostMapping("/sign-up")
-//    public User logUser(@RequestBody User user) {
-//        log.info("GET Запрос на создание пользователя {}", user);
-//        System.out.println(user.toString());
-//        return userService.create(user);
-//    }
-//
-//    @PutMapping
-//    public User updateUser(@RequestBody @Validated({Update.class, Default.class}) User user) {
-//        log.info("PUT Запрос на обновление данных пользователя {}", user);
-//        return userService.updateUser(user);
-//    }
-//
     @CrossOrigin
     @PostMapping("/sign-in")
-    public User getUser(@RequestBody User user) {
-        log.info("POST Запрос на пользователя");
-        return userService.getUser(user);
+    public UserDto getUser(@RequestBody UserRequest request) {
+        return userService.getUserSign(request);
     }
 
     @CrossOrigin
     @PostMapping("/create-user")
-    public User createUser(@RequestBody User user) {
-        log.info("POST Запрос на создание пользователей");
-        return userService.create(user);
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserDto createUser(@Valid @RequestBody UserRequest request) {
+        return userService.save(request);
     }
-//
+
+    @CrossOrigin
+    @PostMapping("/create-task/{userId}/{taskId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createTask(@PathVariable Long userId, @PathVariable int taskId) {
+        userService.saveTask(userId, taskId);
+    }
+
+    @CrossOrigin
+    @DeleteMapping("/remove-task/{userId}/{taskId}")
+    public void removeTask(@PathVariable Long userId, @PathVariable int taskId) {
+        userService.deleteTask(userId, taskId);
+    }
+
+    @CrossOrigin
+    @PostMapping("/create-block/{userId}/{blockId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createBlock(@PathVariable Long userId, @PathVariable int blockId) {
+        userService.saveBlock(userId, blockId);
+    }
+
+    @CrossOrigin
+    @DeleteMapping("/remove-block/{userId}/{blockId}")
+    public void removeBlock(@PathVariable Long userId, @PathVariable int blockId) {
+        userService.deleteBlock(userId, blockId);
+    }
+
+    @CrossOrigin
+    @DeleteMapping("/remove-all-blocks/{userId}")
+    public void removeAllBlock(@PathVariable Long userId) {
+        userService.deleteBlocks(userId);
+    }
+
+    @CrossOrigin
+    @DeleteMapping("/remove-all-tasks/{userId}")
+    public void removeAllTask(@PathVariable Long userId) {
+        userService.deleteTasks(userId);
+    }
+
     @CrossOrigin
     @PostMapping("/logout")
+    @ResponseStatus(HttpStatus.OK)
     public void logout() {
-        log.info("POST Запрос на выход пользователя");
-        HttpStatus.OK.value();
     }
 
     @CrossOrigin
     @GetMapping("/users")
-    public List<User> getUsers(){
-        return userService.getUsers();
+    public List<UserDto> getUsers() {
+        return userService.getAll();
     }
-//
-//    @GetMapping("/{id}/friends/common/{otherId}")
-//    public List<User> getCommonFriends(@PathVariable("id") @Positive long id, @PathVariable("otherId") @Positive long otherId) {
-//        log.info("GET Запрос на список общих друзей пользователя id {} и пользователя id {}", id, otherId);
-//        return userService.getCommonFriends(id, otherId);
-//    }
-//
-//
-//    @PutMapping("/{id}/friends/{friendId}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void addFriend(@PathVariable @Positive long id, @PathVariable @Positive long friendId) {
-//        log.info("PUT Запрос на добавление пользователем id {} в друзья пользователя id {}", id, friendId);
-//        userService.addFriend(id, friendId);
-//    }
-//
-//    @DeleteMapping("/{id}/friends/{friendId}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void deleteFriend(@PathVariable("id") @Positive long id, @PathVariable("friendId") @Positive long friendId) {
-//        log.info("DELETE Запрос на удаление пользователем id {} друга пользователя id {}", id, friendId);
-//        userService.removeFriend(id, friendId);
-//    }
 }

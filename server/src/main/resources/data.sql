@@ -8,15 +8,39 @@ VALUES ('Сергей',
        '123456',
        'Горячих',
        'true');
-INSERT INTO message (name)
+INSERT INTO tasks (name)
 VALUES ('Выставить товар со склада'),
     ('Поправить товар на витрине'),
     ('Сделать актуальность витрины'),
     ('Сделать инвентаризацию витрины'),
     ('Сделать переоценку витрины');
-INSERT INTO block (name,x,y,length,height)
+INSERT INTO blocks (name,x,y,width,height)
 VALUES ('Витрина КБТ',
         10,
         10,
         20,
         30);
+INSERT INTO animals (name)
+VALUES ('FOX'),
+       ('WOLF'),
+       ('DOG'),
+       ('BEAR'),
+       ('ELEPHANT'),
+       ('RABBIT'),
+       ('PANDA'),
+       ('ZEBRA'),
+       ('CAT'),
+       ('HAMSTER'),
+       ('RACCOON');
+INSERT INTO colors (color)
+VALUES ('TURQUOISE'),
+       ('BLUE'),
+       ('RED'),
+       ('PURPLE'),
+       ('PINK'),
+       ('YELLOW'),
+       ('GREEN'),
+       ('LIGHT BLUE'),
+       ('LIGHT GREEN'),
+       ('LIGHT RED'),
+       ('LIGHT PURPLE');
