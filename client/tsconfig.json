@@ -22,7 +22,6 @@
       "constant": ["./shared/constant/index"],
       "pages": ["./shared/pages/index"],
       "store": ["./shared/store/store"],
-      "utils": ["./shared/utils/index"],
     },
   },
   "include": ["src"]

@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "../../shared/store/store";
 import { Footer, Header, Main } from "./components";
 import { fetchStuff } from "../../shared/store/stuff/stuffSlice";
-import { metaballs } from "../../shared/utils";
 
 // const fetchPost = async (data: Record<string, string>, endpoint: string) => {
 //   try {
@@ -184,18 +183,11 @@ export const Map: React.FC = () => {
   const [isStuff, setIsStuff] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const canvas = useRef(null);
   const { loading, error } = useSelector((state) => state.stuff);
 
   useEffect(() => {
     dispatch(fetchStuff());
   }, [dispatch]);
-
-  useEffect(() => {
-    if (canvas.current) {
-      metaballs(canvas.current);
-    }
-  }, [loading]);
 
   const handle = (click: string) => {
     if (click === "task") {
@@ -220,16 +212,10 @@ export const Map: React.FC = () => {
   }
 
   return (
-    <section className="w-screen h-screen flex flex-col justify-between overflow-x-hidden">
+    <section className="w-screen h-screen bg-[#1d1c2a] flex flex-col justify-between overflow-x-hidden">
       <Header isTask={isTask} isStuff={isStuff} handle={handle} />
       <Main isTask={isTask} isStuff={isStuff} />
       <Footer isOpen={isOpen} />
-      <canvas
-        className="h-screen w-screen absolute t-0"
-        width={700}
-        height={400}
-        ref={canvas}
-      ></canvas>
     </section>
   );
 };
