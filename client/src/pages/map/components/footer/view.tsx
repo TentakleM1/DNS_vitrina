@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { PopupFinishTask } from "../popup-finish-task";
 
-export const Footer: React.FC = (props) => {
-  const { isTask } = props;
+interface FooterProps {
+  isOpen: boolean
+}
+
+export const Footer: React.FC<FooterProps> = (props) => {
+  const { isOpen } = props;
   const [isPopup, setIsPopup] = useState(false);
 
   const handle = () => {
@@ -10,8 +14,8 @@ export const Footer: React.FC = (props) => {
   };
 
   return (
-    <footer className="border border-t-orange-500">
-      {isTask ? (
+    <footer className="z-50 border border-t-orange-500">
+      {isOpen ? (
         <></>
       ) : (
         <>

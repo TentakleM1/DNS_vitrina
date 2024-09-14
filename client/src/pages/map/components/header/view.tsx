@@ -1,12 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Header: React.FC = (props) => {
-  const { isTask, handle } = props
+interface HeaderProps {
+  isTask: boolean
+  isStuff: boolean
+  handle: (click: string) => void
+}
+
+export const Header: React.FC<HeaderProps> = (props) => {
+  const { isTask, isStuff, handle } = props
   const navigate = useNavigate();
 
   return (
-    <header className="flex justify-between items-center p-6 bg-orange-400">
+    <header className="z-50 flex justify-between items-center p-6 bg-orange-400">
       <section>
         <span className="text-5xl font-bold">DNS Vitrina</span>
       </section>
@@ -33,11 +39,14 @@ export const Header: React.FC = (props) => {
                 hover:bg-cyan-950 
                 hover:scale-110
               "
-                onClick={() => {
-                  navigate("/create-user");
-                }}
+                onClick={() => handle('stuff')}
               >
-                Создать УСМ
+                {
+                  isStuff ?
+                  'Карта'
+                  :
+                  'Создать сотрудника'
+                }
               </button>
             </li>
             <li className="inline-block  mr-4">
@@ -51,7 +60,7 @@ export const Header: React.FC = (props) => {
                 hover:bg-cyan-950 
                 hover:scale-110
               "
-                onClick={handle}
+                onClick={() => handle('task')}
               >
                 {
                   isTask ?

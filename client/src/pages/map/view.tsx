@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "../../shared/store/store";
 import { Footer, Header, Main } from "./components";
+import { fetchStuff } from "../../shared/store/stuff/stuffSlice";
+import { metaballs } from "../../shared/utils";
 
 // const fetchPost = async (data: Record<string, string>, endpoint: string) => {
 //   try {
@@ -179,16 +181,55 @@ import { Footer, Header, Main } from "./components";
 
 export const Map: React.FC = () => {
   const [isTask, setIsTask] = useState<boolean>(false);
+  const [isStuff, setIsStuff] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const canvas = useRef(null);
+  const { loading, error } = useSelector((state) => state.stuff);
 
-  const handle = () => {
-    setIsTask(!isTask);
+  useEffect(() => {
+    dispatch(fetchStuff());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (canvas.current) {
+      metaballs(canvas.current);
+    }
+  }, [loading]);
+
+  const handle = (click: string) => {
+    if (click === "task") {
+      setIsTask(!isTask);
+      setIsStuff(false);
+      setIsOpen(!isTask);
+    }
+
+    if (click === "stuff") {
+      setIsStuff(!isStuff);
+      setIsTask(false);
+      setIsOpen(!isStuff);
+    }
   };
+
+  if (loading) {
+    return <div className="text-4xl font-bold">Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <section className="w-screen h-screen flex flex-col justify-between overflow-x-hidden">
-      <Header isTask={isTask} handle={handle} />
-      <Main isTask={isTask} />
-      <Footer isTask={isTask} />
+      <Header isTask={isTask} isStuff={isStuff} handle={handle} />
+      <Main isTask={isTask} isStuff={isStuff} />
+      <Footer isOpen={isOpen} />
+      <canvas
+        className="h-screen w-screen absolute t-0"
+        width={700}
+        height={400}
+        ref={canvas}
+      ></canvas>
     </section>
   );
 };

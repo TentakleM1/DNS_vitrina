@@ -1,6 +1,11 @@
 import React from "react";
 
-export const PopupFinishTask: React.FC = (props) => {
+interface PopupFinishTaskProps {
+  isPopup: boolean,
+  handle: () => void
+}
+
+export const PopupFinishTask: React.FC<PopupFinishTaskProps> = (props) => {
   const { isPopup, handle } = props;
   return (
     <div
