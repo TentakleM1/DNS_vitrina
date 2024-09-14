@@ -1,0 +1,1 @@
+export { CreateStaff } from './view'

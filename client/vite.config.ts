@@ -7,8 +7,12 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
+      api: path.resolve('src/shared/api/index'),
+      httpt: path.resolve('src/shared/httptransport/HTTPTransport'),
       pages: path.resolve('src/pages/index'),
-      shared: path.resolve('src/shared/index'),
+      store: path.resolve('src/shared/store/store'),
+      constant: path.resolve('src/shared/constant/index'),
+      utils: path.resolve('./shared/utils/index'),
     },
   },
 })

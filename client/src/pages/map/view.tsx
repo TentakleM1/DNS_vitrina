@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "../../shared/store/store";
+import { Footer, Header, Main } from "./components";
+import { fetchStuff } from "../../shared/store/stuff/stuffSlice";
+import { metaballs } from "../../shared/utils";
 
 // const fetchPost = async (data: Record<string, string>, endpoint: string) => {
 //   try {
@@ -176,105 +179,57 @@ import { useNavigate } from "react-router-dom";
 //     )
 // }
 
-
-
 export const Map: React.FC = () => {
-  const navigate = useNavigate();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [blocks, setBlocks] = useState({})
-
-  const getBloks = async () => {
-    try {
-      const resolve = await fetch('http://localhost:9090/blocks')
-  
-      if(resolve.status === 200) {
-        const result = await resolve.json()
-
-        setBlocks(result[1])
-
-      }
-    } catch (error) {
-      console.error(`Error get bloks: ${error}`)
-    }
-    
-  }
+  const [isTask, setIsTask] = useState<boolean>(false);
+  const [isStuff, setIsStuff] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const canvas = useRef(null);
+  const { loading, error } = useSelector((state) => state.stuff);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext("2d");
-      if (ctx) {
-        // getBloks()
-        // ctx.fillRect(blocks.x, blocks.y, blocks.length, blocks.height)
-      }
+    dispatch(fetchStuff());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (canvas.current) {
+      metaballs(canvas.current);
     }
-  }, [blocks]);
+  }, [loading]);
+
+  const handle = (click: string) => {
+    if (click === "task") {
+      setIsTask(!isTask);
+      setIsStuff(false);
+      setIsOpen(!isTask);
+    }
+
+    if (click === "stuff") {
+      setIsStuff(!isStuff);
+      setIsTask(false);
+      setIsOpen(!isStuff);
+    }
+  };
+
+  if (loading) {
+    return <div className="text-4xl font-bold">Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
-    <section className="w-screen h-screen flex flex-col justify-between overflow-hidden">
-      <header className="flex flex-row justify-between">
-        <nav>
-          <ul>
-            <li>
-              <button
-                onClick={() => {
-                  navigate("/create-user");
-                }}
-              >
-                Create user
-              </button>
-            </li>
-            <li>
-              <a href="#">Create task</a>
-            </li>
-            <li>
-              <a href="#">Profile</a>
-            </li>
-            <li>
-              <a href="#">logout</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main className="h-full flex flex-row items-center justify-between w-full gap-2">
-        <div className="overflow-hidden flex gap-2">
-          <section className="h-[100px] border flex items-center rounded-xl">
-            <div className="w-20 h-20 m-2 border rounded-full">
-              <img src="" alt="usm" />
-            </div>
-          </section>
-          <section className="h-[100px] border flex items-center rounded-xl">
-            <div className="w-20 h-20 m-2 border rounded-full">
-              <img src="" alt="usm" />
-            </div>
-          </section>
-        </div>
-        <div className="border rounded-xl w-[1200px] h-[400px]">
-          <canvas
-            ref={canvasRef}
-            width={1200}
-            height={400}
-            className="border rounded-xl"
-          ></canvas>
-        </div>
-      </main>
-      <footer>
-        <div className="h-[150px] m-2 p-2 border-2 rounded-xl overflow-hidden flex flex-row gap-1">
-          <section className="border w-[200px] p-2">
-            <h1>Витрина КБТ:</h1>
-            <p>Выстовить товар со склада</p>
-            <time>04.08.2024</time>
-          </section>
-          <section className="border w-[200px] p-2">
-            <h1>Витрина КБТ:</h1>
-            <p>Выстовить товар со склада</p>
-            <time>04.08.2024</time>
-          </section>
-        </div>
-        <div>
-          <span>creaty by front dima back yakov 2024</span>
-        </div>
-      </footer>
+    <section className="w-screen h-screen flex flex-col justify-between overflow-x-hidden">
+      <Header isTask={isTask} isStuff={isStuff} handle={handle} />
+      <Main isTask={isTask} isStuff={isStuff} />
+      <Footer isOpen={isOpen} />
+      <canvas
+        className="h-screen w-screen absolute t-0"
+        width={700}
+        height={400}
+        ref={canvas}
+      ></canvas>
     </section>
   );
 };

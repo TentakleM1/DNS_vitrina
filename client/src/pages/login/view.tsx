@@ -1,5 +1,7 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setUser } from "../../shared/store/user/userSlice";
 
 const fetchPost = async (data: Record<string, string>) => {
   try {
@@ -22,10 +24,15 @@ const fetchPost = async (data: Record<string, string>) => {
   }
 };
 
+// UserApi.getUsers()
+
 export const Login: React.FC = () => {
   const formData = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
 
+  console.log(user)
   const handle = async (e): Promise<void> => {
     e.preventDefault();
     const data: {lastName: string, password: string} = {
@@ -36,40 +43,36 @@ export const Login: React.FC = () => {
     const result = await fetchPost(data);
 
     if (!result.ok) {
+      dispatch(setUser(result))
       navigate("/map")
     }
   };
 
   return (
-    <main className="h-screen flex justify-center items-center">
-      <section className="w-[300px] h-[350px] rounded-xl bg-orange-300 flex flex-col justify-around items-center">
-        <section>
-          <h1 className="text-4xl">Вход</h1>
+    <main className="h-screen w-screen flex justify-center items-center">
+      <section className="z-50 w-[300px] h-[350px] rounded-xl bg-neutral-800/50 flex flex-col justify-around items-center text-slate-50">
+        <section className="m-2">
+          <h1 className="text-4xl text-slate-50 font-bold">Вход</h1>
         </section>
         <section className="w-[200px]">
           <form ref={formData}>
-            <section className="h-[300px] flex flex-col items-center justify-around">
-                <input type="text" name="login" className="p-2 border-2 border-blue-950 bg-gray-50 focus:border-blue-800 hover:border-blue-800"/>
-                <input type="password" name="password" className="p-2 border-2 border-blue-950 bg-gray-50 focus:border-blue-800 hover:border-blue-800"/>
-              <section className="text-white">
+            <section className="h-[250px] flex flex-col items-center justify-around">
+                <input type="text" name="login" placeholder="Фамилия" className="p-2 border-2 rounded-md border-orange-600 bg-amber-900/70 focus:border-orange-400 hover:border-orange-400"/>
+                <input type="password" name="password" placeholder="Пароль" className="p-2 border-2 rounded-md border-orange-600 bg-amber-900/70 duration-500 focus:border-orange-400 hover:border-orange-400"/>
+              <section>
                 <section>
-                  <button onClick={handle} className="w-[100px] bg-blue-950 rounded p-2 mt-2">Войти</button>
+                  <button onClick={handle} className="w-[100px] bg-orange-700 rounded p-2 mt-2 duration-500 hover:bg-orange-400">Войти</button>
                 </section>
                 <section>
-                  <button
-                      className="w-[100px] border border-blue-950 rounded p-2 mt-2"
-                      onClick={() => {
-                        navigate("/sign-up");
-                      }}
-                  >
-                    sign up
-                  </button>
                 </section>
               </section>
             </section>
           </form>
         </section>
       </section>
+      <div className="absolute blur-sm">
+        <img src="https://storage.weacom.ru/v8112/1f/omcwAdvboxA.jpg" alt="" />
+      </div>
     </main>
   );
 };
