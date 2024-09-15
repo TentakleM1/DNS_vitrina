@@ -10,4 +10,6 @@ public interface ColorRepository extends Repository {
     Optional<Color> findById(long id);
 
     List<Color> getAll();
+
+    int searchFree();
 }

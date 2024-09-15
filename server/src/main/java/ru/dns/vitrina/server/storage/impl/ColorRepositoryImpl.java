@@ -8,12 +8,21 @@ import ru.dns.vitrina.server.storage.BaseRepository;
 import ru.dns.vitrina.server.storage.inheritance.ColorRepository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Component
 public class ColorRepositoryImpl extends BaseRepository<Color> implements ColorRepository {
     private static final String FIND_BY_ID_QUERY = "SELECT * FROM colors WHERE id = ?";
     private static final String FIND_ALL_QUERY = "SELECT * FROM colors";
+    private static final String SEARCH_FREE_COLOR_QUERY =
+            """
+                    SELECT c.id AS color_id
+                    FROM colors c
+                    LEFT JOIN color_user cu ON c.id = cu.color_id
+                    WHERE cu.user_id IS NULL
+                    LIMIT 1
+                    """;
 
     public ColorRepositoryImpl(JdbcTemplate jdbc, RowMapper<Color> mapper) {
         super(jdbc, mapper);
@@ -27,5 +36,10 @@ public class ColorRepositoryImpl extends BaseRepository<Color> implements ColorR
     @Override
     public List<Color> getAll() {
         return findMany(FIND_ALL_QUERY);
+    }
+
+    @Override
+    public int searchFree() {
+        return Objects.requireNonNull(jdbc.queryForObject(SEARCH_FREE_COLOR_QUERY, mapper)).getId();
     }
 }
