@@ -22,4 +22,6 @@
 
 body {
   overflow: hidden;
+  scrollbar-color: #ff7235 transparent;
+  scrollbar-width: thin;
 }

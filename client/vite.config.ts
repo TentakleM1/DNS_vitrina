@@ -12,7 +12,6 @@ export default defineConfig({
       pages: path.resolve('src/pages/index'),
       store: path.resolve('src/shared/store/store'),
       constant: path.resolve('src/shared/constant/index'),
-      utils: path.resolve('./shared/utils/index'),
     },
   },
 })

@@ -14,15 +14,15 @@ export const Footer: React.FC<FooterProps> = (props) => {
   };
 
   return (
-    <footer className="z-50 border border-t-orange-500">
+    <footer className="text-slate-100  font-bold">
       {isOpen ? (
         <></>
       ) : (
         <>
           <PopupFinishTask isPopup={isPopup} handle={handle} />
-          <div className="h-[150px] m-2 p-2 overflow-x-scroll overflow-y-hidden flex flex-row gap-1">
+          <div className="h-[150px] m-2 p-2 overflow-x-scroll overflow-y-hidden flex flex-row gap-3">
             <section
-              className="border rounded flex-none w-[200px] p-2 cursor-pointer duration-500 hover:shadow-lg"
+              className="bg-[#393378] rounded-3xl flex-none w-[200px] p-3 cursor-pointer duration-500 hover:scale-110"
               onClick={handle}
             >
               <h1>Витрина КБТ:</h1>
@@ -32,7 +32,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
           </div>
         </>
       )}
-      <div className="bg-slate-900 text-slate-300 flex justify-center p-1">
+      <div className="flex justify-center">
         <span>creaty by martynenko and golotkyn 2024</span>
       </div>
     </footer>

@@ -78,7 +78,7 @@ export const Main: React.FC<MainProps> = (props) => {
               );
             })}
           </div>
-          <div className="w-[1000px] h-[400px] border-4 border-orange-400 rounded-xl overflow-y-hidden overflow-x-auto shadow-2xl">
+          <div className="w-[1000px] h-[400px] bg-[#393378] rounded-3xl overflow-y-hidden overflow-x-auto shadow-2xl">
             <canvas ref={canvasRef} width={1000} height={400}></canvas>
           </div>
         </>
