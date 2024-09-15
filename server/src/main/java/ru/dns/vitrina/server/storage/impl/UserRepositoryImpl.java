@@ -3,6 +3,7 @@ package ru.dns.vitrina.server.storage.impl;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import ru.dns.vitrina.server.model.Color;
 import ru.dns.vitrina.server.model.User;
 import ru.dns.vitrina.server.storage.BaseRepository;
 import ru.dns.vitrina.server.storage.inheritance.UserRepository;
@@ -18,12 +19,16 @@ public class UserRepositoryImpl extends BaseRepository<User> implements UserRepo
     private static final String INSERT_QUERY = "INSERT INTO users(name,last_name,password,root) VALUES(?, ?, ?, ?)";
     private static final String INSERT_TASK_QUERY = "INSERT INTO tasks_user(tasks_id, user_id) VALUES(?, ?)";
     private static final String INSERT_BLOCK_QUERY = "INSERT INTO blocks_user(block_id, user_id) VALUES(?, ?)";
+    private static final String INSERT_COLOR_QUERY = "INSERT INTO color_user(color_id, user_id) VALUES(?, ?)";
+    private static final String INSERT_ANIMAL_QUERY = "INSERT INTO animal_user(animal_id, user_id) VALUES(?, ?)";
     private static final String UPDATE_QUERY = "UPDATE users SET name = ?, last_name = ?, password = ?, root = ? WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM users WHERE id = ?";
     private static final String DELETE_TASK_QUERY = "DELETE FROM tasks_user WHERE user_id = ? AND tasks_id = ?";
     private static final String DELETE_ALL_TASKS_QUERY = "DELETE FROM tasks_user WHERE user_id = ?";
     private static final String DELETE_BLOCK_QUERY = "DELETE FROM blocks_user WHERE user_id = ? AND blocks_id = ?";
     private static final String DELETE_ALL_BLOCKS_QUERY = "DELETE FROM blocks_user WHERE user_id = ?";
+    private static final String DELETE_COLOR_QUERY = "DELETE FROM color_user WHERE user_id = ?";
+    private static final String DELETE_ANIMAL_QUERY = "DELETE FROM animal_user WHERE user_id = ?";
 
     public UserRepositoryImpl(JdbcTemplate jdbc, RowMapper<User> mapper) {
         super(jdbc, mapper);
@@ -105,11 +110,39 @@ public class UserRepositoryImpl extends BaseRepository<User> implements UserRepo
 
     @Override
     public boolean deleteTasks(long userId) {
-        return delete(DELETE_TASK_QUERY, userId);
+        return delete(DELETE_ALL_TASKS_QUERY, userId);
     }
 
     @Override
     public boolean deleteBlocks(long userId) {
-        return delete(DELETE_BLOCK_QUERY, userId);
+        return delete(DELETE_ALL_BLOCKS_QUERY, userId);
+    }
+
+    @Override
+    public void saveColor(long colorId, long userId) {
+        insert(
+                INSERT_COLOR_QUERY,
+                colorId,
+                userId
+        );
+    }
+
+    @Override
+    public void saveAnimal(long animalId, long userId) {
+        insert(
+                INSERT_ANIMAL_QUERY,
+                animalId,
+                userId
+        );
+    }
+
+    @Override
+    public boolean deleteColor(long userId) {
+        return delete(DELETE_COLOR_QUERY, userId);
+    }
+
+    @Override
+    public boolean deleteAnimal(long userId) {
+        return delete(DELETE_ANIMAL_QUERY, userId);
     }
 }

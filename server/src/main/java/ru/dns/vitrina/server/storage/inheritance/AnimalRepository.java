@@ -10,4 +10,6 @@ public interface AnimalRepository extends Repository {
     Optional<Animal> findById(long id);
 
     List<Animal> getAll();
+
+    int searchFree();
 }
