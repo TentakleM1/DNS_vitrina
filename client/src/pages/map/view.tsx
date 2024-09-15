@@ -203,11 +203,11 @@ export const Map: React.FC = () => {
     }
   };
 
-  if (loading) {
+  if (false) {
     return <div className="text-4xl font-bold">Loading...</div>;
   }
 
-  if (error) {
+  if (false) {
     return <div>{error}</div>;
   }
 
