@@ -1,9 +1,7 @@
 package ru.dns.vitrina.server.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 import ru.dns.vitrina.server.controller.mapper.UserMapper;
 import ru.dns.vitrina.server.controller.model.user.UserDto;
 import ru.dns.vitrina.server.controller.model.user.UserRequest;
@@ -11,15 +9,12 @@ import ru.dns.vitrina.server.exception.NotFoundException;
 import ru.dns.vitrina.server.exception.ValidationException;
 import ru.dns.vitrina.server.model.User;
 import ru.dns.vitrina.server.service.inheritance.UserService;
-import ru.dns.vitrina.server.storage.impl.TaskRepositoryImpl;
 import ru.dns.vitrina.server.storage.inheritance.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Slf4j
-@Validated
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -91,6 +86,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto save(UserRequest request) {
         User user = UserMapper.mapToUser(request);
+        userRepository.saveColor(colorRepository.searchFree(), user.getId());
+        userRepository.saveAnimal(animalRepository.searchFree(), user.getId());
         return UserMapper.mapToUserDto(userRepository.save(user));
     }
 
@@ -107,6 +104,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean delete(Long id) {
         get(id);
+        userRepository.deleteColor(id);
+        userRepository.deleteAnimal(id);
+        deleteBlocks(id);
+        deleteTasks(id);
         return userRepository.delete(id);
     }
 }

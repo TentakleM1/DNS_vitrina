@@ -8,12 +8,21 @@ import ru.dns.vitrina.server.storage.BaseRepository;
 import ru.dns.vitrina.server.storage.inheritance.AnimalRepository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Component
 public class AnimalRepositoryImpl extends BaseRepository<Animal> implements AnimalRepository {
     private static final String FIND_BY_ID_QUERY = "SELECT * FROM colors WHERE id = ?";
     private static final String FIND_ALL_QUERY = "SELECT * FROM colors";
+    private static final String SEARCH_FREE_ANIMAL_QUERY =
+            """
+                    SELECT a.id AS animal_id
+                    FROM animals a
+                    LEFT JOIN animal_user au ON a.id = au.animal_id
+                    WHERE au.user_id IS NULL
+                    LIMIT 1
+                    """;
 
     public AnimalRepositoryImpl(JdbcTemplate jdbc, RowMapper<Animal> mapper) {
         super(jdbc, mapper);
@@ -22,6 +31,11 @@ public class AnimalRepositoryImpl extends BaseRepository<Animal> implements Anim
     @Override
     public List<Animal> getAll() {
         return findMany(FIND_ALL_QUERY);
+    }
+
+    @Override
+    public int searchFree() {
+        return Objects.requireNonNull(jdbc.queryForObject(SEARCH_FREE_ANIMAL_QUERY, mapper)).getId();
     }
 
     @Override

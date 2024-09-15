@@ -30,4 +30,12 @@ public interface UserRepository extends Repository {
     boolean deleteTasks(long userId);
 
     boolean deleteBlocks(long userId);
+
+    void saveColor(long colorId, long userId);
+
+    void saveAnimal(long animalId, long userId);
+
+    boolean deleteColor(long userId);
+
+    boolean deleteAnimal(long userId);
 }
