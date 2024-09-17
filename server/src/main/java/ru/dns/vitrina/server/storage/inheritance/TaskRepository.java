@@ -11,5 +11,5 @@ public interface TaskRepository extends Repository {
 
     List<Task> getAll();
 
-
+    List<Task> search(long userId);
 }

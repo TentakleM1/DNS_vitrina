@@ -23,6 +23,13 @@ public class ColorRepositoryImpl extends BaseRepository<Color> implements ColorR
                     WHERE cu.user_id IS NULL
                     LIMIT 1
                     """;
+    private static final String SEARCH_QUERY =
+            """
+                    SELECT colors.id, colors.name
+                    FROM colors
+                    INNER JOIN colors_user ON colors.id = colors_user.colors_id
+                    WHERE colors_user.user_id = ?
+                    """;
 
     public ColorRepositoryImpl(JdbcTemplate jdbc, RowMapper<Color> mapper) {
         super(jdbc, mapper);
@@ -41,5 +48,10 @@ public class ColorRepositoryImpl extends BaseRepository<Color> implements ColorR
     @Override
     public int searchFree() {
         return Objects.requireNonNull(jdbc.queryForObject(SEARCH_FREE_COLOR_QUERY, mapper)).getId();
+    }
+
+    @Override
+    public List<Color> search(long userId) {
+        return jdbc.query(SEARCH_QUERY, mapper, userId);
     }
 }

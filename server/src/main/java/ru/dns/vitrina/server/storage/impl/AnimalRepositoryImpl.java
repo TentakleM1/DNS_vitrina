@@ -23,6 +23,13 @@ public class AnimalRepositoryImpl extends BaseRepository<Animal> implements Anim
                     WHERE au.user_id IS NULL
                     LIMIT 1
                     """;
+    private static final String SEARCH_QUERY =
+            """
+                    SELECT animals.id, animals.name
+                    FROM animals
+                    INNER JOIN animals_user ON animals.id = animals_user.animals_id
+                    WHERE animals_user.user_id = ?
+                    """;
 
     public AnimalRepositoryImpl(JdbcTemplate jdbc, RowMapper<Animal> mapper) {
         super(jdbc, mapper);
@@ -36,6 +43,11 @@ public class AnimalRepositoryImpl extends BaseRepository<Animal> implements Anim
     @Override
     public int searchFree() {
         return Objects.requireNonNull(jdbc.queryForObject(SEARCH_FREE_ANIMAL_QUERY, mapper)).getId();
+    }
+
+    @Override
+    public List<Animal> search(long userId) {
+        return jdbc.query(SEARCH_QUERY, mapper, userId);
     }
 
     @Override

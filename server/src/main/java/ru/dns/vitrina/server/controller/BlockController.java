@@ -25,4 +25,10 @@ public class BlockController {
         return blockService.get(blockId);
     }
 
+    @CrossOrigin
+    @GetMapping("/search-block/{userId}")
+    public List<BlockDto> searchBlock(@PathVariable Long userId) {
+        return blockService.searchBlock(userId);
+    }
+
 }

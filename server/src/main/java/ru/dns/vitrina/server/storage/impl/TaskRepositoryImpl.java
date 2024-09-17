@@ -15,6 +15,13 @@ import java.util.*;
 public class TaskRepositoryImpl extends BaseRepository<Task> implements TaskRepository {
     private static final String FIND_BY_ID_QUERY = "SELECT * FROM tasks WHERE id = ?";
     private static final String FIND_ALL_QUERY = "SELECT * FROM tasks";
+    private static final String SEARCH_QUERY =
+            """
+                    SELECT tasks.id, tasks.name
+                    FROM tasks
+                    INNER JOIN tasks_user ON tasks.id = tasks_user.tasks_id
+                    WHERE tasks_user.user_id = ?
+                    """;
 
     public TaskRepositoryImpl(JdbcTemplate jdbc, RowMapper<Task> mapper) {
         super(jdbc, mapper);
@@ -29,5 +36,10 @@ public class TaskRepositoryImpl extends BaseRepository<Task> implements TaskRepo
     @Override
     public List<Task> getAll() {
         return findMany(FIND_ALL_QUERY);
+    }
+
+    @Override
+    public List<Task> search(long userId) {
+        return jdbc.query(SEARCH_QUERY, mapper, userId);
     }
 }
