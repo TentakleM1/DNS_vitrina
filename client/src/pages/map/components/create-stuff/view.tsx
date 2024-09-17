@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import "./index.css";
-import { usm } from "../../../../assets/img/index";
+import { alien } from "../../../../assets/img/index";
 
 const fetchPost = async (data) => {
   try {
@@ -40,7 +40,7 @@ export const CreateStaff: React.FC = () => {
 
   return (
     <div>
-      <section className="w-[300px] h-[450px] text-slate-100 font-bold rounded-3xl bg-[#ff7235] flex flex-col justify-center items-center">
+      <section className="w-[300px] h-[450px] text-gray-800 font-bold rounded-3xl bg-[#EAE4DD] flex flex-col justify-center items-center">
         <section>
           <form ref={form}>
             <section className="flex flex-col items-center justify-around gap-4">
@@ -48,19 +48,19 @@ export const CreateStaff: React.FC = () => {
               <input
                 type="text"
                 name="name"
-                className="p-2 border-2 rounded-md border-[#5a578b] bg-[#ff7235] duration-500 hover:bg-[#5a578b]/50"
+                className="p-2 border-2 rounded-md border-[#5a578b] bg-[#EAE4DD] duration-500 hover:bg-[#ff7235]/50"
               />
               <label htmlFor="lasName">Фамилия</label>
               <input
                 type="text"
                 name="lastName"
-                className="p-2 border-2 rounded-md border-[#5a578b] bg-[#ff7235] duration-500 hover:bg-[#5a578b]/50"
+                className="p-2 border-2 rounded-md border-[#5a578b] bg-[#EAE4DD] duration-500 hover:bg-[#ff7235]/50"
               />
               <label htmlFor="password">Пароль</label>
               <input
                 type="password"
                 name="password"
-                className="p-2 border-2 rounded-md border-[#5a578b] bg-[#ff7235] duration-500 hover:bg-[#5a578b]/50"
+                className="p-2 border-2 rounded-md border-[#5a578b] bg-[#EAE4DD] duration-500 hover:bg-[#ff7235]/50"
               />
               <div className="checkbox-wrapper">
                 <label className="lbl" htmlFor="cbx">
@@ -73,7 +73,7 @@ export const CreateStaff: React.FC = () => {
                 <section>
                   <button
                     onClick={handle}
-                    className="text-amber-50 rounded-3xl p-2 duration-500 hover:bg-[#5a578b] hover:scale-110"
+                    className="text-amber-50 bg-[#ff7235] rounded-2xl p-2 duration-500 hover:scale-110"
                   >
                     Создать
                   </button>
@@ -84,7 +84,7 @@ export const CreateStaff: React.FC = () => {
         </section>
       </section>
       <div className="absolute bottom-5 right-5 w-[300px]">
-        <img src={usm} alt="" />
+        <img src={alien} alt="" />
       </div>
     </div>
   );

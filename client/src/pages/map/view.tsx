@@ -203,16 +203,16 @@ export const Map: React.FC = () => {
     }
   };
 
-  if (false) {
+  if (loading) {
     return <div className="text-4xl font-bold">Loading...</div>;
   }
 
-  if (false) {
+  if (error) {
     return <div>{error}</div>;
   }
 
   return (
-    <section className="w-screen h-screen bg-[#1d1c2a] flex flex-col justify-between overflow-x-hidden">
+    <section className="w-screen h-screen bg-[#F5F7F8] flex flex-col justify-between overflow-x-hidden">
       <Header isTask={isTask} isStuff={isStuff} handle={handle} />
       <Main isTask={isTask} isStuff={isStuff} />
       <Footer isOpen={isOpen} />

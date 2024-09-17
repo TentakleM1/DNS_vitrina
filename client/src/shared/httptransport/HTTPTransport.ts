@@ -1,32 +1,33 @@
+import { IUser } from "shared/store/user/userSlice";
 import { BASE_URL } from "../constant";
 import { METHODS } from "./type";
 
-interface Options {
-    url: string
-    data?: Record<string, string> | null
+interface IOptions {
+    data?: IUser | null
 }
 
 export class HTTPTransport {
     static BASE_URL: string = BASE_URL
 
-    public get(options: Options) {
-        return this.request(METHODS.GET, options)
+    public get(url: string, options: IOptions = {}) {
+        return this.request(METHODS.GET, url, options)
     }
 
-    public post() {
-
+    public post(url: string, options: IOptions = {}) {
+        return this.request(METHODS.POST, url, options)
     }
 
-    public put() {
-
+    public put(url: string, options: IOptions = {}) {
+        return this.request(METHODS.PUT, url, options)
     }
 
-    public delete () {
-
+    public delete (url: string) {
+        return this.request(METHODS.DELETE, url)
     }
 
-    private  async request(method: string, options: Options) {
-        const { url, data } = options
+    private  async request(method: string, url: string, options: IOptions = {}) {
+        const { data } = options
+        console.log(data)
         if(method === METHODS.GET) {
             const response = await fetch(`${BASE_URL}${url}`)
 
@@ -38,6 +39,7 @@ export class HTTPTransport {
         }
 
         const response = await fetch(`${BASE_URL}${url}`, {
+            mode: 'no-cors',
             method: method,
             credentials: 'include',
             headers: {
@@ -45,7 +47,7 @@ export class HTTPTransport {
             },
             body: JSON.stringify(data),
         })
-
+        
         if(!response.ok) {
             throw new Error(`${method} request error`)
         }
