@@ -25,8 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUserSign(UserRequest request) {
-        User user = UserMapper.mapToUser(request);
-        return UserMapper.mapToUserDto(userRepository.getUserSign(user.getLastName(), user.getPassword()));
+        return UserMapper.mapToUserDto(userRepository.getUserSign(request.getLastName(), request.getPassword()));
     }
 
     @Override
