@@ -12,4 +12,6 @@ public interface AnimalRepository extends Repository {
     List<Animal> getAll();
 
     int searchFree();
+
+    List<Animal> search(long userId);
 }

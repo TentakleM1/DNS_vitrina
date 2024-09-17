@@ -50,4 +50,11 @@ public class TaskServiceImpl implements TaskService {
     public boolean delete(Long id) {
         return false;
     }
+
+    @Override
+    public List<TaskDto> search(long userId) {
+        return taskRepository.search(userId).stream()
+                .map(TaskMapper::mapToTaskDto)
+                .collect(Collectors.toList());
+    }
 }

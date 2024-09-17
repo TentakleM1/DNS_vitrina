@@ -12,4 +12,6 @@ public interface ColorRepository extends Repository {
     List<Color> getAll();
 
     int searchFree();
+
+    List<Color> search(long userId);
 }

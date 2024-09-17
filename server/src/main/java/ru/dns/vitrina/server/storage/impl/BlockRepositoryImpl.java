@@ -14,6 +14,13 @@ import java.util.Optional;
 public class BlockRepositoryImpl extends BaseRepository<Block> implements BlockRepository {
     private static final String FIND_BY_ID_QUERY = "SELECT * FROM blocks WHERE id = ?";
     private static final String FIND_ALL_QUERY = "SELECT * FROM blocks";
+    private static final String SEARCH_QUERY =
+            """
+                    SELECT blocks.id, blocks.name
+                    FROM blocks
+                    INNER JOIN blocks_user ON blocks.id = blocks_user.blocks_id
+                    WHERE blocks_user.user_id = ?
+                    """;
 
     public BlockRepositoryImpl(JdbcTemplate jdbc, RowMapper<Block> mapper) {
         super(jdbc, mapper);
@@ -28,4 +35,11 @@ public class BlockRepositoryImpl extends BaseRepository<Block> implements BlockR
     public List<Block> getAll() {
         return findMany(FIND_ALL_QUERY);
     }
+
+    @Override
+    public List<Block> search(long userId) {
+        return jdbc.query(SEARCH_QUERY, mapper, userId);
+    }
+
+
 }

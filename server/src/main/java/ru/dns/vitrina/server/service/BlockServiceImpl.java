@@ -7,12 +7,10 @@ import ru.dns.vitrina.server.controller.mapper.BlockMapper;
 import ru.dns.vitrina.server.controller.model.block.BlockDto;
 import ru.dns.vitrina.server.controller.model.block.BlockRequest;
 import ru.dns.vitrina.server.exception.NotFoundException;
-import ru.dns.vitrina.server.model.Block;
 import ru.dns.vitrina.server.service.inheritance.BlockService;
 import ru.dns.vitrina.server.storage.inheritance.BlockRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,5 +46,12 @@ public class BlockServiceImpl implements BlockService {
     @Override
     public boolean delete(Long id) {
         return false;
+    }
+
+    @Override
+    public List<BlockDto> searchBlock(long userId) {
+        return blockRepository.search(userId).stream()
+                .map(BlockMapper::mapToBlockDto)
+                .collect(Collectors.toList());
     }
 }

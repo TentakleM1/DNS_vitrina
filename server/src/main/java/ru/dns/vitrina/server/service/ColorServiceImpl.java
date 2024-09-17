@@ -45,4 +45,11 @@ public class ColorServiceImpl implements ColorService {
     public boolean delete(Long id) {
         return false;
     }
+
+    @Override
+    public List<ColorDto> search(long userId) {
+        return colorRepository.search(userId).stream()
+                .map(ColorMapper::mapToColorDto)
+                .collect(Collectors.toList());
+    }
 }
