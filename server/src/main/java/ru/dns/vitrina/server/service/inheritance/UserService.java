@@ -18,5 +18,4 @@ public interface UserService extends BaseService<UserDto, UserRequest> {
     boolean deleteTasks(long userId);
 
     boolean deleteBlocks(long userId);
-
 }

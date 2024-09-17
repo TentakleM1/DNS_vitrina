@@ -24,4 +24,10 @@ public class AnimalController {
     public AnimalDto getAvatar(@PathVariable long animalId) {
         return animalService.get(animalId);
     }
+
+    @CrossOrigin
+    @GetMapping("/search-avatar/{userId}")
+    public List<AnimalDto> searchAvatar(@PathVariable long userId) {
+        return animalService.search(userId);
+    }
 }

@@ -25,4 +25,10 @@ public class TaskController {
         return taskService.get(taskId);
     }
 
+    @CrossOrigin
+    @GetMapping("/search-task/{userId}")
+    public List<TaskDto> searchTask(@PathVariable Long userId) {
+        return taskService.search(userId);
+    }
+
 }

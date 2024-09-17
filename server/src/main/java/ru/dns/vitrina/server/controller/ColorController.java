@@ -24,4 +24,10 @@ public class ColorController {
     public ColorDto getColorById(@PathVariable Long colorId) {
         return colorService.get(colorId);
     }
+
+    @CrossOrigin
+    @GetMapping("/search-color/{userId}")
+    public List<ColorDto> searchColor(@PathVariable Long userId) {
+        return colorService.search(userId);
+    }
 }

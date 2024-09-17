@@ -6,6 +6,7 @@ import ru.dns.vitrina.server.controller.mapper.AnimalMapper;
 import ru.dns.vitrina.server.controller.model.animal.AnimalDto;
 import ru.dns.vitrina.server.controller.model.animal.AnimalRequest;
 import ru.dns.vitrina.server.exception.NotFoundException;
+import ru.dns.vitrina.server.service.inheritance.AnimalService;
 import ru.dns.vitrina.server.storage.inheritance.AnimalRepository;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class AnimalService implements ru.dns.vitrina.server.service.inheritance.AnimalService {
+public class AnimalServiceImpl implements AnimalService {
     private final AnimalRepository animalRepository;
 
 
@@ -44,5 +45,12 @@ public class AnimalService implements ru.dns.vitrina.server.service.inheritance.
     @Override
     public boolean delete(Long id) {
         return false;
+    }
+
+    @Override
+    public List<AnimalDto> search(long userId) {
+        return animalRepository.search(userId).stream()
+                .map(AnimalMapper::mapToAnimalDto)
+                .collect(Collectors.toList());
     }
 }
