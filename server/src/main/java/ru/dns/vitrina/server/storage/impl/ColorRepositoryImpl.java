@@ -25,7 +25,7 @@ public class ColorRepositoryImpl extends BaseRepository<Color> implements ColorR
                     """;
     private static final String SEARCH_QUERY =
             """
-                    SELECT c.id, c.name
+                    SELECT c.id, c.color
                     FROM colors c
                     INNER JOIN colors_user cu ON c.id = cu.color_id
                     WHERE cu.user_id = ?
