@@ -11,6 +11,8 @@ import ru.dns.vitrina.server.validator.group.Create;
 import ru.dns.vitrina.server.validator.group.Default;
 import ru.dns.vitrina.server.validator.group.Update;
 
+import java.util.List;
+
 @Data
 public class User {
     private long id;
@@ -18,4 +20,7 @@ public class User {
     private String lastName;
     private String password;
     private boolean root;
+    private List<Animal> avatar;
+    private List<Color> color;
+    private List<Vitrina> vitrina;
 }

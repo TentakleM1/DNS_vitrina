@@ -2,6 +2,7 @@ package ru.dns.vitrina.server.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.dns.vitrina.server.controller.mapper.AnimalMapper;
 import ru.dns.vitrina.server.controller.mapper.UserMapper;
 import ru.dns.vitrina.server.controller.model.user.UserDto;
 import ru.dns.vitrina.server.controller.model.user.UserRequest;
