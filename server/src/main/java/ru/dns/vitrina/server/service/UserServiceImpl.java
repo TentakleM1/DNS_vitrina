@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto save(UserRequest request) {
         User user = UserMapper.mapToUser(request);
+        System.out.println(user.toString());
         userRepository.saveColor(colorRepository.searchFree(), user.getId());
         userRepository.saveAnimal(animalRepository.searchFree(), user.getId());
         return UserMapper.mapToUserDto(userRepository.save(user));
