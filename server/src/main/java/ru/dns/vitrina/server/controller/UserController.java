@@ -19,7 +19,6 @@ public class UserController {
     @CrossOrigin
     @PostMapping("/sign-in")
     public UserDto getUser(@RequestBody UserRequest request) {
-        System.out.println(request.toString());
         return userService.getUserSign(request);
     }
 

@@ -19,10 +19,9 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final AnimalRepository animalRepository;
-    private final BlockRepository blockRepository;
     private final ColorRepository colorRepository;
-    private final TaskRepository taskRepository;
     private final EpicRepository epicRepository;
+    private final VitrinaRepository vitrinaRepository;
 
     @Override
     public UserDto getUserSign(UserRequest request) {
@@ -46,7 +45,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto save(UserRequest request) {
         User user = UserMapper.mapToUser(request);
-        System.out.println(user.toString());
         userRepository.saveColor(colorRepository.searchFree(), user.getId());
         userRepository.saveAnimal(animalRepository.searchFree(), user.getId());
         return UserMapper.mapToUserDto(userRepository.save(user));
@@ -68,6 +66,7 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteColor(id);
         userRepository.deleteAnimal(id);
         epicRepository.deleteByIdUser(id);
+        vitrinaRepository.removeAllVitrinsByUserId(id);
         return userRepository.delete(id);
     }
 }
