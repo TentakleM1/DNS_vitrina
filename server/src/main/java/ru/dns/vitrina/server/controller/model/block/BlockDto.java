@@ -7,7 +7,6 @@ import lombok.Data;
 public class BlockDto {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private int id;
-    private String name;
     private int x;
     private int y;
     private int width;

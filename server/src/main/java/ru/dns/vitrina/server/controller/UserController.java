@@ -30,44 +30,6 @@ public class UserController {
     }
 
     @CrossOrigin
-    @PostMapping("/create-task/{userId}/{taskId}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createTask(@PathVariable Long userId, @PathVariable int taskId) {
-        userService.saveTask(userId, taskId);
-    }
-
-    @CrossOrigin
-    @DeleteMapping("/remove-task/{userId}/{taskId}")
-    public void removeTask(@PathVariable Long userId, @PathVariable int taskId) {
-        userService.deleteTask(userId, taskId);
-    }
-
-    @CrossOrigin
-    @PostMapping("/create-block/{userId}/{blockId}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createBlock(@PathVariable Long userId, @PathVariable int blockId) {
-        userService.saveBlock(userId, blockId);
-    }
-
-    @CrossOrigin
-    @DeleteMapping("/remove-block/{userId}/{blockId}")
-    public void removeBlock(@PathVariable Long userId, @PathVariable int blockId) {
-        userService.deleteBlock(userId, blockId);
-    }
-
-    @CrossOrigin
-    @DeleteMapping("/remove-all-blocks/{userId}")
-    public void removeAllBlock(@PathVariable Long userId) {
-        userService.deleteBlocks(userId);
-    }
-
-    @CrossOrigin
-    @DeleteMapping("/remove-all-tasks/{userId}")
-    public void removeAllTask(@PathVariable Long userId) {
-        userService.deleteTasks(userId);
-    }
-
-    @CrossOrigin
     @PostMapping("/logout")
     @ResponseStatus(HttpStatus.OK)
     public void logout() {

@@ -7,5 +7,4 @@ import ru.dns.vitrina.server.service.BaseService;
 import java.util.List;
 
 public interface BlockService extends BaseService<BlockDto, BlockRequest> {
-    List<BlockDto> searchBlock(long userId);
 }
