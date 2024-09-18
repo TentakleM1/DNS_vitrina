@@ -17,10 +17,10 @@ public class TaskRepositoryImpl extends BaseRepository<Task> implements TaskRepo
     private static final String FIND_ALL_QUERY = "SELECT * FROM tasks";
     private static final String SEARCH_QUERY =
             """
-                    SELECT tasks.id, tasks.name
-                    FROM tasks
-                    INNER JOIN tasks_user ON tasks.id = tasks_user.tasks_id
-                    WHERE tasks_user.user_id = ?
+                    SELECT t.id, t.name
+                    FROM tasks t
+                    INNER JOIN tasks_user tu ON t.id = tu.task_id
+                    WHERE tu.user_id = ?
                     """;
 
     public TaskRepositoryImpl(JdbcTemplate jdbc, RowMapper<Task> mapper) {
