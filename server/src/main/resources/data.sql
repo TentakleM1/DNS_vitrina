@@ -94,9 +94,9 @@ VALUES ('TURQUOISE'),
        ('LIGHT GREEN'),
        ('LIGHT RED'),
        ('LIGHT PURPLE');
-INSERT INTO color_user (color_id,user_id)
+INSERT INTO colors_user (color_id,user_id)
 VALUES (2,2),
        (1,1);
-INSERT INTO animal_user(animal_id,user_id)
+INSERT INTO animals_user(animal_id,user_id)
 VALUES (1,1),
        (4,2);

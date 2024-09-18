@@ -1,5 +1,6 @@
 package ru.dns.vitrina.server.controller;
 
+import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.dns.vitrina.server.controller.model.animal.AnimalDto;
@@ -27,7 +28,7 @@ public class AnimalController {
 
     @CrossOrigin
     @GetMapping("/search-avatar/{userId}")
-    public List<AnimalDto> searchAvatar(@PathVariable long userId) {
+    public List<AnimalDto> searchAvatar(@PathVariable @Positive Long userId) {
         return animalService.search(userId);
     }
 }

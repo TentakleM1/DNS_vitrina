@@ -14,8 +14,8 @@ import java.util.Optional;
 
 @Repository
 public class AnimalRepositoryImpl extends BaseRepository<Animal> implements AnimalRepository {
-    private static final String FIND_BY_ID_QUERY = "SELECT * FROM colors WHERE id = ?";
-    private static final String FIND_ALL_QUERY = "SELECT * FROM colors";
+    private static final String FIND_BY_ID_QUERY = "SELECT * FROM animals WHERE id = ?";
+    private static final String FIND_ALL_QUERY = "SELECT * FROM animals";
     private static final String SEARCH_FREE_ANIMAL_QUERY =
             """
                     SELECT a.id AS animal_id
@@ -26,10 +26,10 @@ public class AnimalRepositoryImpl extends BaseRepository<Animal> implements Anim
                     """;
     private static final String SEARCH_QUERY =
             """
-                    SELECT animals.id, animals.name
-                    FROM animals
-                    INNER JOIN animals_user ON animals.id = animals_user.animals_id
-                    WHERE animals_user.user_id = ?
+                    SELECT a.id, a.name
+                    FROM animals a
+                    INNER JOIN animals_user au ON a.id = au.animal_id
+                    WHERE au.user_id = ?
                     """;
 
     public AnimalRepositoryImpl(JdbcTemplate jdbc, RowMapper<Animal> mapper) {

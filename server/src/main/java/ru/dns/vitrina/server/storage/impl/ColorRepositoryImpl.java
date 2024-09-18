@@ -26,10 +26,10 @@ public class ColorRepositoryImpl extends BaseRepository<Color> implements ColorR
                     """;
     private static final String SEARCH_QUERY =
             """
-                    SELECT colors.id, colors.name
-                    FROM colors
-                    INNER JOIN colors_user ON colors.id = colors_user.colors_id
-                    WHERE colors_user.user_id = ?
+                    SELECT c.id, c.name
+                    FROM colors c
+                    INNER JOIN colors_user cu ON c.id = cu.color_id
+                    WHERE cu.user_id = ?
                     """;
 
     public ColorRepositoryImpl(JdbcTemplate jdbc, RowMapper<Color> mapper) {
