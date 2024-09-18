@@ -36,12 +36,7 @@ CREATE TABLE IF NOT EXISTS tasks_user
     user_id INTEGER NOT NULL REFERENCES users (id)
     ON DELETE CASCADE ON UPDATE CASCADE,
     description TEXT,
-<<<<<<< Updated upstream
-    color_priority TEXT
-=======
-    color TEXT,
-    priority TEXT
->>>>>>> Stashed changes
+    color_priority TEXT NOT NULL
     );
 CREATE TABLE IF NOT EXISTS vitrins_user
 (
