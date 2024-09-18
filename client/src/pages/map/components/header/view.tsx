@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import './style.css'
 
 interface HeaderProps {
   isTask: boolean;
@@ -16,7 +17,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
       <section className="p-2 rounded-xl bg-[#ff7235]">
         <span className="text-white text-5xl font-bold">Витрина</span>
       </section>
-      <section className="w-10 flex items-center border-2 rounded-full border-[#ff7235] duration-500 focus:w-[200px]">
+      <section className="search flex items-center border-2 rounded-full border-[#ff7235] overflow-hidden">
         <label htmlFor="search">
           <svg
             width="30px"
@@ -37,7 +38,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         <input
           type="text"
           name="search"
-          className="w-10 p-2 bg-[#F5F7F8] rounded-full duration-500 focus:w-[150px]"
+          className="search-input w-5 bg-[#F5F7F8] hidden"
         />
       </section>
       <section className="flex items-center gap-8">
@@ -54,6 +55,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
           <ul className="text-white">
             <li className="inline-block mr-4">
               <button
+                title={
+                  isStuff
+                    ? "назад на карту"
+                    : "создание или удаления сотрудника"
+                }
                 className="
                 btn-header
                 rounded-3xl p-2 
@@ -112,6 +118,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
             </li>
             <li className="inline-block  mr-4">
               <button
+                title={isTask ? "назад на карту" : "создание задачи"}
                 className="
                 btn-header
                 rounded-3xl p-2 
@@ -197,6 +204,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
             </li>
             <li className="inline-block">
               <button
+                title="выход"
                 className="
                 btn-header
                 rounded-3xl p-2 

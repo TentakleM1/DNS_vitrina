@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import "./index.css";
 import { alien } from "../../../../assets/img/index";
+import { useSelector } from "../../../../shared/store/store";
 
 const fetchPost = async (data) => {
   try {
@@ -26,6 +27,7 @@ const fetchPost = async (data) => {
 
 export const CreateStaff: React.FC = () => {
   const form = useRef(null);
+  const { stuff } = useSelector((state) => state);
 
   const handle = async (e) => {
     e.preventDefault();
@@ -39,7 +41,49 @@ export const CreateStaff: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="h-[600px] w-2/4 flex justify-around gap-4">
+      <div className="p-4 bg-[#EAE4DD] rounded-xl overflow-x-hidden overflow-y-scroll flex-col flex gap-2">
+        {stuff.stuff.map((card) => {
+          // if (card.root) return;
+          return (
+            <section
+              key={card.id}
+              onClick={() => choiceUsm(card.id)}
+              className="w-[300px] h-[100px] flex-none flex flex-col gap-2 overflow-hidden cursor-pointer rounded-xl duration-500 hover: hover:shadow-lg hover:bg-orange-500 hover:text-amber-50"
+            >
+              <div className="flex items-center justify-around">
+                <div className="w-20 h-20 m-2">
+                  <img
+                    src="https://i.pinimg.com/originals/0a/dd/87/0add874e1ea0676c4365b2dd7ddd32e3.jpg"
+                    alt="usm"
+                    className="rounded-full"
+                  />
+                </div>
+                <div>
+                  <span>{`${card.lastName} ${card.name}`}</span>
+                </div>
+                <div>
+                  <svg
+                    width="30px"
+                    height="30px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15 16L20 21M20 16L15 21M4 21C4 17.134 7.13401 14 11 14M15 7C15 9.20914 13.2091 11 11 11C8.79086 11 7 9.20914 7 7C7 4.79086 8.79086 3 11 3C13.2091 3 15 4.79086 15 7Z"
+                      stroke="#000000"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </section>
+          );
+        })}
+      </div>
       <section className="w-[300px] h-[450px] text-gray-800 font-bold rounded-3xl bg-[#EAE4DD] flex flex-col justify-center items-center">
         <section>
           <form ref={form}>

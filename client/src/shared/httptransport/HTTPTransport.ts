@@ -39,7 +39,6 @@ export class HTTPTransport {
         }
 
         const response = await fetch(`${BASE_URL}${url}`, {
-            mode: 'no-cors',
             method: method,
             credentials: 'include',
             headers: {

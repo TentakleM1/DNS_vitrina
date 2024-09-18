@@ -10,26 +10,7 @@ const tasks = [
 const storefronts = ["КБТ", "Мониторы", "Аудио", "Смартфоны"];
 
 export const CreateTusk: React.FC = () => {
-  const [name, setName] = useState("none");
-  const [storefront, setStorefront] = useState("none");
-  const [task, setTask] = useState("none");
   const { stuff } = useSelector((state) => state);
-
-  const choiceUsm = (index: number) => {
-    stuff.stuff.forEach((usm) => {
-      if (usm.id == index) {
-        setName(`${usm.lastName} ${usm.name}`);
-      }
-    });
-  };
-
-  const choiceStorefront = (index: number) => {
-    setStorefront(storefronts[index]);
-  };
-
-  const choiceTask = (index: number) => {
-    setTask(tasks[index]);
-  };
 
   return (
     <div className="h-[600px] w-full flex justify-center gap-2">
