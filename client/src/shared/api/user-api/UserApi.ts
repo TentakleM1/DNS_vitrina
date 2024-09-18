@@ -17,6 +17,14 @@ class UserApi extends BaseApi {
     public  createUser(data: IStuff) {
         return this.http.post('/user', { data: data })
     }
+
+    public getAnimal(id: number) {
+        return this.http.get(`/search-avatar/${id}`)
+    }
+
+    public getColor(id: number) {
+        return this.http.get(`/search-color/${id}`)
+    }
 }
 
 export default new UserApi()

@@ -1,0 +1,1 @@
+export { animalColorGet } from './user'

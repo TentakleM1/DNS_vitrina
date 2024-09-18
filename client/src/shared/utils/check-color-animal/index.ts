@@ -1,0 +1,1 @@
+export { checkColorAnimal } from './checkColorAnimal'
