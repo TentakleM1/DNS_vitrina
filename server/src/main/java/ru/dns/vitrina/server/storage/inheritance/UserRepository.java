@@ -19,18 +19,6 @@ public interface UserRepository extends Repository {
 
     List<User> getAll();
 
-    void saveTask(long taskId, long userId);
-
-    void deleteTask(long taskId, long userId);
-
-    void saveBlock(long blockId, long userId);
-
-    void deleteBlock(long blockId, long userId);
-
-    boolean deleteTasks(long userId);
-
-    boolean deleteBlocks(long userId);
-
     void saveColor(long colorId, long userId);
 
     void saveAnimal(long animalId, long userId);

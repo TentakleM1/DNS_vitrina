@@ -40,7 +40,6 @@ export class HTTPTransport {
 
         const response = await fetch(`${BASE_URL}${url}`, {
             method: method,
-            credentials: 'include',
             headers: {
                 "Content-Type": "application/json",
             },
