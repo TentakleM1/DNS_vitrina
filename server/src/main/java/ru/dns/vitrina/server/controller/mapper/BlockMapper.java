@@ -10,7 +10,6 @@ public final class BlockMapper {
     public static BlockDto mapToBlockDto(Block block) {
         BlockDto dto = new BlockDto();
         dto.setId(block.getId());
-        dto.setName(block.getName());
         dto.setX(block.getX());
         dto.setY(block.getY());
         dto.setWidth(block.getWidth());

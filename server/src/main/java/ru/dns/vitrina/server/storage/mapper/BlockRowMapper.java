@@ -13,7 +13,6 @@ public class BlockRowMapper implements RowMapper<Block> {
     public Block mapRow(ResultSet rs, int rowNum) throws SQLException {
         Block block = new Block();
         block.setId(rs.getInt("id"));
-        block.setName(rs.getString("name"));
         block.setX(rs.getInt("x"));
         block.setY(rs.getInt("y"));
         block.setWidth(rs.getInt("width"));

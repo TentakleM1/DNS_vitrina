@@ -10,6 +10,4 @@ public interface BlockRepository extends Repository {
     Optional<Block> findById(long id);
 
     List<Block> getAll();
-
-    List<Block> search(long userId);
 }

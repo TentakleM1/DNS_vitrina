@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 public class BlockRequest {
     private int id;
-    private String name;
     @NotBlank(message = "пустой х")
     private int x;
     @NotBlank(message = "пустой у")

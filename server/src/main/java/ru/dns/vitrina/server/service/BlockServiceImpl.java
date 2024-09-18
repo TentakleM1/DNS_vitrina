@@ -47,11 +47,4 @@ public class BlockServiceImpl implements BlockService {
     public boolean delete(Long id) {
         return false;
     }
-
-    @Override
-    public List<BlockDto> searchBlock(long userId) {
-        return blockRepository.search(userId).stream()
-                .map(BlockMapper::mapToBlockDto)
-                .collect(Collectors.toList());
-    }
 }
