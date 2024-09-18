@@ -7,6 +7,7 @@ import { Profile } from "../profile";
 interface MainProps {
   isTask: boolean;
   isStuff: boolean;
+  isProfile: boolean;
 }
 
 type Block = (
@@ -25,7 +26,7 @@ const block: Block = (ctx, x, y, width, height) => {
 };
 
 export const Main: React.FC<MainProps> = (props) => {
-  const { isTask, isStuff } = props;
+  const { isTask, isStuff, isProfile } = props;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const data = useSelector((state) => state);
 
@@ -131,14 +132,16 @@ export const Main: React.FC<MainProps> = (props) => {
         ctx.strokeRect(980, 290, 40, 40);
       }
     }
-  }, [isTask, isStuff]);
+  }, [isTask, isStuff, isProfile]);
 
   return (
     <main className="z-50 h-[40%] flex flex-row items-center justify-around w-full gap-2">
       {isTask ? (
-        <Profile />
+        <CreateTusk />
       ) : isStuff ? (
         <CreateStaff />
+      ) : isProfile ? (
+        <Profile />
       ) : (
         <>
           <div className="h-[400px] p-4 bg-[#EAE4DD] rounded-xl overflow-x-hidden overflow-y-scroll flex-col flex gap-2">

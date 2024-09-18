@@ -181,6 +181,7 @@ import { fetchStuff } from "../../shared/store/stuff/stuffSlice";
 export const Map: React.FC = () => {
   const [isTask, setIsTask] = useState<boolean>(false);
   const [isStuff, setIsStuff] = useState<boolean>(false);
+  const [isProfile, setIsProfile] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.stuff);
@@ -193,11 +194,20 @@ export const Map: React.FC = () => {
     if (click === "task") {
       setIsTask(!isTask);
       setIsStuff(false);
+      setIsProfile(false);
       setIsOpen(!isTask);
     }
 
     if (click === "stuff") {
       setIsStuff(!isStuff);
+      setIsTask(false);
+      setIsProfile(false);
+      setIsOpen(!isStuff);
+    }
+
+    if (click === "profile") {
+      setIsProfile(!isProfile);
+      setIsStuff(false);
       setIsTask(false);
       setIsOpen(!isStuff);
     }
@@ -213,8 +223,13 @@ export const Map: React.FC = () => {
 
   return (
     <section className="w-screen h-screen bg-[#F5F7F8] flex flex-col justify-between overflow-x-hidden">
-      <Header isTask={isTask} isStuff={isStuff} handle={handle} />
-      <Main isTask={isTask} isStuff={isStuff} />
+      <Header
+        isTask={isTask}
+        isStuff={isStuff}
+        isProfile={isProfile}
+        handle={handle}
+      />
+      <Main isTask={isTask} isStuff={isStuff} isProfile={isProfile} />
       <Footer isOpen={isOpen} />
     </section>
   );

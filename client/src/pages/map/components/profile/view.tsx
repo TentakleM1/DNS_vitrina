@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "../../../../shared/store/store";
 import { alien } from "../../../../assets/img";
-import { animalColorGet } from "../../../../shared/service";
 
 export const Profile: React.FC = () => {
   const { user } = useSelector((state) => state);
   const [isSeting, setIsSeting] = useState(false);
-
-  useEffect(() => {
-    animalColorGet(user.user.id)
-  }, [user])
 
   const handleSetting = () => {
     setIsSeting(!isSeting);

@@ -1,1 +1,0 @@
-export { animalColorGet } from './userService'

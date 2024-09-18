@@ -1636,3 +1636,21 @@ WHERE cu.user_id = ? [42122-224]
 	at org.springframework.jdbc.core.JdbcTemplate$SimplePreparedStatementCreator.createPreparedStatement(JdbcTemplate.java:1711)
 	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:656)
 	... 70 common frames omitted
+2024-09-18 18:05:03,957 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.1.Final
+2024-09-18 18:05:04,185 INFO r.d.v.s.ServerApplication [main] Starting ServerApplication using Java 22.0.2 with PID 3756 (C:\Users\ksyyy\OneDrive\Рабочий стол\Y\DNS_vitrina\server\target\classes started by ksyyy in C:\Users\ksyyy\OneDrive\Рабочий стол\Y\DNS_vitrina)
+2024-09-18 18:05:04,187 INFO r.d.v.s.ServerApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-09-18 18:05:06,486 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 9090 (http)
+2024-09-18 18:05:06,502 INFO o.a.c.h.Http11NioProtocol [main] Initializing ProtocolHandler ["http-nio-9090"]
+2024-09-18 18:05:06,521 INFO o.a.c.c.StandardService [main] Starting service [Tomcat]
+2024-09-18 18:05:06,522 INFO o.a.c.c.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-18 18:05:06,620 INFO o.a.c.c.C.[.[.[/] [main] Initializing Spring embedded WebApplicationContext
+2024-09-18 18:05:06,620 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2325 ms
+2024-09-18 18:05:06,922 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-09-18 18:05:07,223 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:./server/db/dnsDB user=SA
+2024-09-18 18:05:07,225 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-09-18 18:05:08,019 INFO o.a.c.h.Http11NioProtocol [main] Starting ProtocolHandler ["http-nio-9090"]
+2024-09-18 18:05:08,054 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 9090 (http) with context path '/'
+2024-09-18 18:05:08,069 INFO r.d.v.s.ServerApplication [main] Started ServerApplication in 4.521 seconds (process running for 5.728)
+2024-09-18 18:05:15,112 INFO o.a.c.c.C.[.[.[/] [http-nio-9090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-18 18:05:15,112 INFO o.s.w.s.DispatcherServlet [http-nio-9090-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-09-18 18:05:15,112 INFO o.s.w.s.DispatcherServlet [http-nio-9090-exec-1] Completed initialization in 0 ms
