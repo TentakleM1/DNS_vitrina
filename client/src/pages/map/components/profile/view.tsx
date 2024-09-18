@@ -2,12 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "../../../../shared/store/store";
 import { alien } from "../../../../assets/img";
 
+const test = async (id) => {
+  const avatar = await fetch('/search-avatar/${id}')
+
+  const result = avatar.json()
+  console.log(result)
+}
+
 export const Profile: React.FC = () => {
   const { user } = useSelector((state) => state);
   const [isSeting, setIsSeting] = useState(false);
 
   useEffect(() => {
-    console.log(user.user);
+    test(user.user.id)
   }, [user]);
 
   const handleSetting = () => {
