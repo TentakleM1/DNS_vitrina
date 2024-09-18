@@ -1,38 +1,13 @@
 import React, { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setUser } from "../../shared/store/user/userSlice";
-
-const fetchPost = async (data: Record<string, string>) => {
-  try {
-    const response = await fetch("http://localhost:9090/sign-in", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error! status: ${response.status}`);
-    }
-
-    return await response.json();
-
-  } catch (error) {
-    throw new Error(`Error: not workig GET: ${error}`);
-  }
-};
-
-// UserApi.getUsers()
+import { loginUser } from "../../shared/store/user/userSlice";
 
 export const Login: React.FC = () => {
   const formData = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.user)
 
-  console.log(user)
   const handle = async (e): Promise<void> => {
     e.preventDefault();
     const data: {lastName: string, password: string} = {
@@ -40,14 +15,10 @@ export const Login: React.FC = () => {
         password: formData.current[1].value
     };
 
-    const result = await fetchPost(data);
-
-    if (!result.ok) {
-      dispatch(setUser(result))
-      navigate("/map")
-    }
+    await dispatch(loginUser(data))
+    // navigate('/map')
   };
-  // #5a578b #ff7235
+
   return (
     <main className="h-screen w-screen flex justify-center items-center">
       <section className="z-50 w-[300px] h-[350px] rounded-xl bg-neutral-800/50 flex flex-col justify-around items-center text-slate-50">

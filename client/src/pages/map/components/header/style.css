@@ -1,0 +1,20 @@
+.search {
+    width: 40px;
+    height: 40px;
+    transition-property: all;
+    transition-duration: 500ms;
+}
+
+.search-input {
+    transition-property: all;
+    transition-duration: 500ms;
+}
+
+.search:hover .search-input {
+    display: inline;
+    width: 150px;
+}
+
+.search:hover {
+    width: 200px;
+}

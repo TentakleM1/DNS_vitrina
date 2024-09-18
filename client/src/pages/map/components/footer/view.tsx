@@ -20,14 +20,13 @@ export const Footer: React.FC<FooterProps> = (props) => {
       ) : (
         <>
           <PopupFinishTask isPopup={isPopup} handle={handle} />
-          <div className="h-[150px] m-2 p-2 overflow-x-scroll overflow-y-hidden flex flex-row gap-3">
+          <div className="h-[160px] m-2 p-2 bg-[#EAE4DD] rounded-xl overflow-x-scroll overflow-y-hidden flex flex-row gap-3">
             <section
-              className="bg-[#393378] rounded-3xl flex-none w-[200px] p-3 cursor-pointer duration-500 hover:scale-110"
+              className="bg-[#78c638] rounded-3xl flex-none w-[200px] p-3 cursor-pointer duration-500 hover:scale-110"
               onClick={handle}
             >
               <h1>Витрина КБТ:</h1>
               <p>Выстовить товар со склада</p>
-              <time>04.08.2024</time>
             </section>
           </div>
         </>
