@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import ru.dns.vitrina.server.model.Vitrina;
 import ru.dns.vitrina.server.storage.BaseRepository;
 import ru.dns.vitrina.server.storage.inheritance.VitrinaRepository;
+import ru.dns.vitrina.server.storage.mapper.VitrinaRowMapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,13 @@ public class VitrinaRepositoryImpl extends BaseRepository<Vitrina> implements Vi
                     """;
     private static final String DELETE_VITRINA_BY_USER = "DELETE FROM vitrins_user WHERE vitrina_id = ? AND user_id = ? ";
     private static final String DELETE_ALL_VITRINS_BY_ID = "DELETE FROM vitrins_user WHERE user_id = ?";
+    private static final String SEARCH_VITRINS_BY_USER =
+            """
+                    SELECT v.*
+                    FROM vitrins v
+                    JOIN vitrins_user vu ON v.id = vu.vitrina_id
+                    WHERE vu.user_id = ?;
+                    """;
 
     public VitrinaRepositoryImpl(JdbcTemplate jdbc, RowMapper<Vitrina> mapper) {
         super(jdbc, mapper);
@@ -49,5 +57,10 @@ public class VitrinaRepositoryImpl extends BaseRepository<Vitrina> implements Vi
     @Override
     public void removeAllVitrinsByUserId(long userId) {
         jdbc.update(DELETE_ALL_VITRINS_BY_ID,userId);
+    }
+
+    @Override
+    public List<Vitrina> searchVitrinsByUser(long userId) {
+        return jdbc.query(SEARCH_VITRINS_BY_USER, mapper,userId);
     }
 }

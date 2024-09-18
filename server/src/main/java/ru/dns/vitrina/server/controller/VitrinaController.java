@@ -20,6 +20,12 @@ public class VitrinaController {
     }
 
     @CrossOrigin
+    @GetMapping("/search-vitrins-user/{userId}")
+    public List<VitrinaDto> getVitrinasByUserId(@PathVariable Long userId) {
+        return vitrinaService.searchVitrinsByUser(userId);
+    }
+
+    @CrossOrigin
     @GetMapping("/vitrins")
     public List<VitrinaDto> getAllVitrins() {
         return vitrinaService.getAll();
