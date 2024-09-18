@@ -27,7 +27,6 @@ export class HTTPTransport {
 
     private  async request(method: string, url: string, options: IOptions = {}) {
         const { data } = options
-        console.log(data)
         if(method === METHODS.GET) {
             const response = await fetch(`${BASE_URL}${url}`)
 

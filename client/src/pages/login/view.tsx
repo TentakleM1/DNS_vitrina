@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../shared/store/user/userSlice";
+import { famaly } from "../../assets/img";
 
 export const Login: React.FC = () => {
   const formData = useRef(null);
@@ -16,7 +17,7 @@ export const Login: React.FC = () => {
     };
 
     await dispatch(loginUser(data))
-    // navigate('/map')
+    navigate('/map')
   };
 
   return (
@@ -42,7 +43,7 @@ export const Login: React.FC = () => {
         </section>
       </section>
       <div className="absolute blur-sm">
-        <img src="https://storage.weacom.ru/v8112/1f/omcwAdvboxA.jpg" alt="" />
+        <img src={famaly} alt="" className="w-screen"/>
       </div>
     </main>
   );

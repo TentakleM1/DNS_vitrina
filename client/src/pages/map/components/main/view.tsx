@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { CreateTusk } from "../create-tusk";
 import { CreateStaff } from "../create-stuff";
 import { useSelector } from "../../../../shared/store/store";
+import { Profile } from "../profile";
 
 interface MainProps {
   isTask: boolean;
@@ -27,6 +28,14 @@ export const Main: React.FC<MainProps> = (props) => {
   const { isTask, isStuff } = props;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const data = useSelector((state) => state);
+
+  useEffect(() => {
+    if (document.cookie.indexOf("nameCookie") == 0) {
+      console.log("Куки есть");
+    } else {
+      console.log("Куки нет");
+    }
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -127,14 +136,14 @@ export const Main: React.FC<MainProps> = (props) => {
   return (
     <main className="z-50 h-[40%] flex flex-row items-center justify-around w-full gap-2">
       {isTask ? (
-        <CreateTusk />
+        <Profile />
       ) : isStuff ? (
         <CreateStaff />
       ) : (
         <>
           <div className="h-[400px] p-4 bg-[#EAE4DD] rounded-xl overflow-x-hidden overflow-y-scroll flex-col flex gap-2">
             {data.stuff.stuff.map((card) => {
-              // if (card.root) return;
+              if (card.root) return;
               return (
                 <section className="w-[300px] h-[100px] text-gray-800 flex-none flex flex-col gap-2 overflow-hidden cursor-pointer rounded-xl duration-500 hover:h-[250px] hover: hover:shadow-lg hover:bg-orange-500">
                   <div className="flex items-center">
