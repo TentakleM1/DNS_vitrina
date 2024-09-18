@@ -3,7 +3,6 @@ package ru.dns.vitrina.server.storage.impl;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import ru.dns.vitrina.server.model.Color;
 import ru.dns.vitrina.server.model.User;
 import ru.dns.vitrina.server.storage.BaseRepository;
 import ru.dns.vitrina.server.storage.inheritance.UserRepository;

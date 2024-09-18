@@ -4,6 +4,7 @@ package ru.dns.vitrina.server.storage.impl;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import ru.dns.vitrina.server.model.Task;
 import ru.dns.vitrina.server.storage.BaseRepository;
 import ru.dns.vitrina.server.storage.inheritance.TaskRepository;
@@ -11,7 +12,7 @@ import ru.dns.vitrina.server.storage.inheritance.TaskRepository;
 import java.util.*;
 
 
-@Component
+@Repository
 public class TaskRepositoryImpl extends BaseRepository<Task> implements TaskRepository {
     private static final String FIND_BY_ID_QUERY = "SELECT * FROM tasks WHERE id = ?";
     private static final String FIND_ALL_QUERY = "SELECT * FROM tasks";
