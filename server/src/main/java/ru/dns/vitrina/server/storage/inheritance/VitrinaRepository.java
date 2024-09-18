@@ -16,4 +16,6 @@ public interface VitrinaRepository extends Repository {
     void removeUser(long userId, long vitrinaId);
 
     void removeAllVitrinsByUserId(long userId);
+
+    List<Vitrina> searchVitrinsByUser(long userId);
 }

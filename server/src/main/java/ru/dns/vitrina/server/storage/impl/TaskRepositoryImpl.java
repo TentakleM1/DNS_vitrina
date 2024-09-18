@@ -3,7 +3,6 @@ package ru.dns.vitrina.server.storage.impl;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import ru.dns.vitrina.server.model.Task;
 import ru.dns.vitrina.server.storage.BaseRepository;

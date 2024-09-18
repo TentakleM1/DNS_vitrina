@@ -2,12 +2,10 @@ package ru.dns.vitrina.server.storage.impl;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import ru.dns.vitrina.server.model.Epic;
 import ru.dns.vitrina.server.storage.BaseRepository;
 import ru.dns.vitrina.server.storage.inheritance.EpicRepository;
-import ru.dns.vitrina.server.storage.mapper.EpicRowMapper;
 
 import java.util.List;
 import java.util.Optional;
