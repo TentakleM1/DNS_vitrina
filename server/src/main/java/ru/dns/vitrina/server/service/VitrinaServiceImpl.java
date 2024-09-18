@@ -60,4 +60,11 @@ public class VitrinaServiceImpl implements VitrinaService {
     public void removeAllVitrinsUserId(long userId) {
         vitrinaRepository.removeAllVitrinsByUserId(userId);
     }
+
+    @Override
+    public List<VitrinaDto> searchVitrinsByUser(long userId) {
+        return vitrinaRepository.searchVitrinsByUser(userId).stream()
+                .map(VitrinaMapper::mapToVitrinaDto)
+                .collect(Collectors.toList());
+    }
 }
