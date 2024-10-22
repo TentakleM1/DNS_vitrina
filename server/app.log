@@ -1,0 +1,20 @@
+2024-10-19 08:47:16,511 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.1.Final
+2024-10-19 08:47:16,525 INFO r.d.v.s.ServerApplication [main] Starting ServerApplication using Java 22.0.2 with PID 49825 (/Users/admin/Downloads/Без названия/server/target/classes started by admin in /Users/admin/Downloads/Без названия/server)
+2024-10-19 08:47:16,526 INFO r.d.v.s.ServerApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-10-19 08:47:16,990 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 9090 (http)
+2024-10-19 08:47:16,995 INFO o.a.c.h.Http11NioProtocol [main] Initializing ProtocolHandler ["http-nio-9090"]
+2024-10-19 08:47:16,996 INFO o.a.c.c.StandardService [main] Starting service [Tomcat]
+2024-10-19 08:47:16,996 INFO o.a.c.c.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-10-19 08:47:17,014 INFO o.a.c.c.C.[.[.[/] [main] Initializing Spring embedded WebApplicationContext
+2024-10-19 08:47:17,014 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 467 ms
+2024-10-19 08:47:17,097 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-10-19 08:47:17,210 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:./db/dnsDB user=SA
+2024-10-19 08:47:17,210 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-10-19 08:47:17,402 INFO o.a.c.h.Http11NioProtocol [main] Starting ProtocolHandler ["http-nio-9090"]
+2024-10-19 08:47:17,407 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 9090 (http) with context path '/'
+2024-10-19 08:47:17,412 INFO r.d.v.s.ServerApplication [main] Started ServerApplication in 1.029 seconds (process running for 1.476)
+2024-10-19 08:47:28,801 INFO o.a.c.c.C.[.[.[/] [http-nio-9090-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-19 08:47:28,802 INFO o.s.w.s.DispatcherServlet [http-nio-9090-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-10-19 08:47:28,805 INFO o.s.w.s.DispatcherServlet [http-nio-9090-exec-1] Completed initialization in 3 ms
+2024-10-19 08:48:55,031 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-10-19 08:48:55,033 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
