@@ -2,9 +2,9 @@ package ru.dns.vitrina.server.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.dns.vitrina.server.controller.model.epic.EpicDto;
-import ru.dns.vitrina.server.controller.model.epic.EpicRequest;
-import ru.dns.vitrina.server.service.inheritance.EpicService;
+import ru.dns.vitrina.server.controller.dto.epic.EpicDto;
+import ru.dns.vitrina.server.controller.dto.epic.EpicRequest;
+import ru.dns.vitrina.server.service.impl.EpicService;
 
 import java.util.List;
 

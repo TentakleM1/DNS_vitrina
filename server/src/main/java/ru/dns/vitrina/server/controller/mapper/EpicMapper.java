@@ -2,8 +2,8 @@ package ru.dns.vitrina.server.controller.mapper;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import ru.dns.vitrina.server.controller.model.epic.EpicDto;
-import ru.dns.vitrina.server.controller.model.epic.EpicRequest;
+import ru.dns.vitrina.server.controller.dto.epic.EpicDto;
+import ru.dns.vitrina.server.controller.dto.epic.EpicRequest;
 import ru.dns.vitrina.server.model.Epic;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

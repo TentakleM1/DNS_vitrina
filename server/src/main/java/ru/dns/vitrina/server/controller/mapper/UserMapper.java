@@ -2,11 +2,11 @@ package ru.dns.vitrina.server.controller.mapper;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import ru.dns.vitrina.server.controller.model.animal.AnimalDto;
-import ru.dns.vitrina.server.controller.model.color.ColorDto;
-import ru.dns.vitrina.server.controller.model.user.UserDto;
-import ru.dns.vitrina.server.controller.model.user.UserRequest;
-import ru.dns.vitrina.server.controller.model.vitrina.VitrinaDto;
+import ru.dns.vitrina.server.controller.dto.animal.AnimalDto;
+import ru.dns.vitrina.server.controller.dto.color.ColorDto;
+import ru.dns.vitrina.server.controller.dto.user.UserDto;
+import ru.dns.vitrina.server.controller.dto.user.UserRequest;
+import ru.dns.vitrina.server.controller.dto.vitrina.VitrinaDto;
 import ru.dns.vitrina.server.model.Animal;
 import ru.dns.vitrina.server.model.Color;
 import ru.dns.vitrina.server.model.User;

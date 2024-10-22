@@ -2,8 +2,8 @@ package ru.dns.vitrina.server.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.dns.vitrina.server.controller.model.block.BlockDto;
-import ru.dns.vitrina.server.service.inheritance.BlockService;
+import ru.dns.vitrina.server.controller.dto.block.BlockDto;
+import ru.dns.vitrina.server.service.impl.BlockService;
 
 import java.util.List;
 

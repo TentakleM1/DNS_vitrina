@@ -1,16 +1,23 @@
 package ru.dns.vitrina.server.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
-@Data
-@EqualsAndHashCode
-public class Color implements Comparable<Color> {
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "colors")
+public class Color  {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotBlank
     private String color;
 
-    @Override
-    public int compareTo(Color o) {
-        return this.id.compareTo(o.getId());
-    }
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }

@@ -2,8 +2,8 @@ package ru.dns.vitrina.server.controller.mapper;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import ru.dns.vitrina.server.controller.model.animal.AnimalDto;
-import ru.dns.vitrina.server.controller.model.animal.AnimalRequest;
+import ru.dns.vitrina.server.controller.dto.animal.AnimalDto;
+import ru.dns.vitrina.server.controller.dto.animal.AnimalRequest;
 import ru.dns.vitrina.server.model.Animal;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

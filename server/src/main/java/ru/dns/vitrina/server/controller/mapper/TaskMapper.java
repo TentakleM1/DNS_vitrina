@@ -2,7 +2,7 @@ package ru.dns.vitrina.server.controller.mapper;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import ru.dns.vitrina.server.controller.model.task.TaskDto;
+import ru.dns.vitrina.server.controller.dto.task.TaskDto;
 import ru.dns.vitrina.server.model.Task;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

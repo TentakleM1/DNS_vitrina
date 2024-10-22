@@ -2,8 +2,8 @@ package ru.dns.vitrina.server.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.dns.vitrina.server.controller.model.vitrina.VitrinaDto;
-import ru.dns.vitrina.server.service.inheritance.VitrinaService;
+import ru.dns.vitrina.server.controller.dto.vitrina.VitrinaDto;
+import ru.dns.vitrina.server.service.impl.VitrinaService;
 
 import java.util.List;
 
