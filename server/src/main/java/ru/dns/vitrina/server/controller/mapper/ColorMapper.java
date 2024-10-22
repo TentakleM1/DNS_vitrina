@@ -2,8 +2,8 @@ package ru.dns.vitrina.server.controller.mapper;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import ru.dns.vitrina.server.controller.model.color.ColorDto;
-import ru.dns.vitrina.server.controller.model.color.ColorRequest;
+import ru.dns.vitrina.server.controller.dto.color.ColorDto;
+import ru.dns.vitrina.server.controller.dto.color.ColorRequest;
 import ru.dns.vitrina.server.model.Color;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

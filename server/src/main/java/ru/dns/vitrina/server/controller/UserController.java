@@ -4,9 +4,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.dns.vitrina.server.controller.model.user.UserDto;
-import ru.dns.vitrina.server.controller.model.user.UserRequest;
-import ru.dns.vitrina.server.service.inheritance.UserService;
+import ru.dns.vitrina.server.controller.dto.user.UserDto;
+import ru.dns.vitrina.server.controller.dto.user.UserRequest;
+import ru.dns.vitrina.server.service.impl.UserService;
 
 import java.util.List;
 

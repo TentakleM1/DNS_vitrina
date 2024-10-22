@@ -2,8 +2,8 @@ package ru.dns.vitrina.server.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.dns.vitrina.server.controller.model.color.ColorDto;
-import ru.dns.vitrina.server.service.inheritance.ColorService;
+import ru.dns.vitrina.server.controller.dto.color.ColorDto;
+import ru.dns.vitrina.server.service.impl.ColorService;
 
 import java.util.List;
 

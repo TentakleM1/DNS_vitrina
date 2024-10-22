@@ -3,58 +3,21 @@ package ru.dns.vitrina.server.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.dns.vitrina.server.controller.mapper.TaskMapper;
-import ru.dns.vitrina.server.controller.model.task.TaskDto;
-import ru.dns.vitrina.server.controller.model.task.TaskRequest;
-import ru.dns.vitrina.server.exception.NotFoundException;
+
 import ru.dns.vitrina.server.model.Task;
-import ru.dns.vitrina.server.service.inheritance.TaskService;
-import ru.dns.vitrina.server.storage.inheritance.TaskRepository;
+import ru.dns.vitrina.server.service.impl.TaskService;
+import ru.dns.vitrina.server.repository.TaskRepository;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
-    private final TaskRepository taskRepository;
-
-
-    @Override
-    public TaskDto get(Long id) {
-        return taskRepository.findById(id)
-                .map(TaskMapper::mapToTaskDto)
-                .orElseThrow(() -> new NotFoundException("Задача с ID = " + id + " не найден"));
-    }
+    private final TaskRepository repository;
 
     @Override
-    public List<TaskDto> getAll() {
-        return taskRepository.getAll().stream()
-                .map(TaskMapper::mapToTaskDto)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public TaskDto save(TaskRequest request) {
-        return null;
-    }
-
-    @Override
-    public TaskDto update(TaskRequest request) {
-        return null;
-    }
-
-    @Override
-    public boolean delete(Long id) {
-        return false;
-    }
-
-    @Override
-    public List<TaskDto> search(long userId) {
-        return taskRepository.search(userId).stream()
-                .map(TaskMapper::mapToTaskDto)
-                .collect(Collectors.toList());
+    public List<Task> getTasks() {
+        return List.of();
     }
 }

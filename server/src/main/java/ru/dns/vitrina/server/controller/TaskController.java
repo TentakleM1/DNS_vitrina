@@ -2,8 +2,8 @@ package ru.dns.vitrina.server.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.dns.vitrina.server.controller.model.task.TaskDto;
-import ru.dns.vitrina.server.service.inheritance.TaskService;
+import ru.dns.vitrina.server.controller.dto.task.TaskDto;
+import ru.dns.vitrina.server.service.impl.TaskService;
 
 import java.util.List;
 

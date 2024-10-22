@@ -3,8 +3,8 @@ package ru.dns.vitrina.server.controller;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.dns.vitrina.server.controller.model.animal.AnimalDto;
-import ru.dns.vitrina.server.service.inheritance.AnimalService;
+import ru.dns.vitrina.server.controller.dto.animal.AnimalDto;
+import ru.dns.vitrina.server.service.impl.AnimalService;
 
 import java.util.List;
 

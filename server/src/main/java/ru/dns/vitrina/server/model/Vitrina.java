@@ -1,17 +1,31 @@
 package ru.dns.vitrina.server.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@EqualsAndHashCode
-public class Vitrina implements Comparable<Vitrina> {
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "vitrins")
+public class Vitrina {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
-    private int blockId;
 
-    @Override
-    public int compareTo(Vitrina o) {
-        return this.id.compareTo(o.getId());
-    }
+    @NotBlank
+    @Column(nullable = false)
+    private String name;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "block_id", nullable = false)
+    private Block block;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
 }

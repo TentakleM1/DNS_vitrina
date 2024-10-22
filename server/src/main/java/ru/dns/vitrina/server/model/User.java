@@ -1,26 +1,47 @@
 package ru.dns.vitrina.server.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import lombok.Builder;
-import lombok.Data;
-import ru.dns.vitrina.server.validator.annotation.NotWriteSpace;
-import ru.dns.vitrina.server.validator.annotation.NullOrNotBlank;
-import ru.dns.vitrina.server.validator.group.Create;
-import ru.dns.vitrina.server.validator.group.Default;
-import ru.dns.vitrina.server.validator.group.Update;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
+@Table(name = "users")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @NotBlank
+    @Column(nullable = false)
     private String lastName;
+
+    @NotBlank
+    @Column(nullable = false)
     private String password;
+
+    @NotBlank
+    @Column(nullable = false)
     private boolean root;
-    private List<Animal> avatar;
-    private List<Color> color;
-    private List<Vitrina> vitrina;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "animal_id", nullable = false)
+    private Animal animal;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "color_id", nullable = false)
+    private Color color;
+
 }
