@@ -1,12 +1,8 @@
 package ru.dns.vitrina.server.animal.mapper;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import ru.dns.vitrina.server.animal.dto.AnimalDto;
 import ru.dns.vitrina.server.animal.model.Animal;
-import ru.dns.vitrina.server.controller.dto.animal.AnimalRequest;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class AnimalMapper {
     public static AnimalDto mapToAnimalDto(Animal animal) {
         AnimalDto dto = new AnimalDto();
@@ -15,10 +11,10 @@ public final class AnimalMapper {
         return dto;
     }
 
-    public static Animal mapToAnimal(AnimalRequest request) {
+    public static Animal mapToAnimal(AnimalDto dto) {
         Animal animal = new Animal();
-        animal.setId(request.getId());
-        animal.setName(request.getName());
+        animal.setId(dto.getId());
+        animal.setName(dto.getName());
         return animal;
     }
 }

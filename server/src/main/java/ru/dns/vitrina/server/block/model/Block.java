@@ -1,23 +1,25 @@
 package ru.dns.vitrina.server.block.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "blocks")
 public class Block {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(nullable = false)
-    private int x;
+    private Integer x;
     @Column(nullable = false)
-    private int y;
+    private Integer y;
     @Column(nullable = false)
-    private int width;
+    private Integer width;
     @Column(nullable = false)
-    private int height;
+    private Integer height;
 }

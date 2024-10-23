@@ -8,6 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "colors")
 public class Color  {
     @Id

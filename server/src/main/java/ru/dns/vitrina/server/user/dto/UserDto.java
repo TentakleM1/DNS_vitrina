@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.dns.vitrina.server.animal.model.Animal;
 import ru.dns.vitrina.server.color.model.Color;
-import ru.dns.vitrina.server.vitrina.dto.VitrinaDto;
+import ru.dns.vitrina.server.vitrina.model.Vitrina;
 
 import java.util.List;
 
@@ -19,5 +19,5 @@ public class UserDto {
     private boolean root;
     private Animal avatar;
     private Color color;
-    private List<VitrinaDto> vitrina;
+    private List<Vitrina> vitrina;
 }

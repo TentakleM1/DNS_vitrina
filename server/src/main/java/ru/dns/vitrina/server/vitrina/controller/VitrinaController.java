@@ -27,14 +27,14 @@ public class VitrinaController {
     }
 
     @CrossOrigin
-    @PostMapping("/vitrins")
+    @PostMapping("/vitrina-save")
     public void save(@Valid @RequestBody VitrinaDto dto) {
         log.info("Save vitrins {}", dto.toString());
         service.save(dto);
     }
 
     @CrossOrigin
-    @PostMapping("/vitrins")
+    @PostMapping("/vitrina-update")
     public void update(@Valid @RequestBody VitrinaDto dto) {
         log.info("Update vitrins {}", dto.toString());
         service.update(dto);

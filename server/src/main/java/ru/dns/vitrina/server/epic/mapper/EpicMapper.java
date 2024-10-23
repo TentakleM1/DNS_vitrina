@@ -1,28 +1,38 @@
 package ru.dns.vitrina.server.epic.mapper;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-import ru.dns.vitrina.server.controller.dto.epic.EpicRequest;
 import ru.dns.vitrina.server.epic.dto.EpicDto;
 import ru.dns.vitrina.server.epic.model.Epic;
+import ru.dns.vitrina.server.epic.model.SuccessEpic;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class EpicMapper {
-    public static EpicDto mapToEpicDto(Epic epic) {
+
+public class EpicMapper {
+    public static EpicDto mapToDto(Epic epic) {
         EpicDto dto = new EpicDto();
-        dto.setTaskId(epic.getTaskId());
-        dto.setUserId(epic.getUserId());
+        dto.setId(epic.getId());
+        dto.setTask(epic.getTask());
+        dto.setUser(epic.getUser());
         dto.setDescription(epic.getDescription());
         dto.setColorPriority(epic.getColorPriority());
         return dto;
     }
 
-    public static Epic mapToEpic(EpicRequest request) {
+    public static Epic mapToEpic(EpicDto dto) {
         Epic epic = new Epic();
-        epic.setTaskId(request.getTaskId());
-        epic.setUserId(request.getUserId());
-        epic.setDescription(request.getDescription());
-        epic.setColorPriority(request.getColorPriority());
+        epic.setId(dto.getId());
+        epic.setTask(dto.getTask());
+        epic.setUser(dto.getUser());
+        epic.setDescription(dto.getDescription());
+        epic.setColorPriority(dto.getColorPriority());
         return epic;
+    }
+
+    public static SuccessEpic mapToSuccessEpic(EpicDto dto) {
+        SuccessEpic successEpic = new SuccessEpic();
+        successEpic.setId(dto.getId());
+        successEpic.setTask(dto.getTask());
+        successEpic.setUser(dto.getUser());
+        successEpic.setDescription(dto.getDescription());
+        successEpic.setColorPriority(dto.getColorPriority());
+        return successEpic;
     }
 }

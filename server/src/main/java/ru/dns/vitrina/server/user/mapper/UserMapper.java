@@ -6,19 +6,22 @@ import ru.dns.vitrina.server.user.dto.RegistrationUserDto;
 import ru.dns.vitrina.server.user.dto.SignInUserDto;
 import ru.dns.vitrina.server.user.dto.UserDto;
 import ru.dns.vitrina.server.user.model.User;
+import ru.dns.vitrina.server.vitrina.service.VitrinaService;
 
 @RequiredArgsConstructor
-public class UserMapper {
+public final class UserMapper {
+    private static VitrinaService vitrinaService;
+
     public static UserDto mapToDto(User user) {
         UserDto dto = new UserDto();
         dto.setId(user.getId());
         dto.setName(user.getName());
         dto.setLastName(user.getLastName());
-        dto.setRoot(user.isRoot());
+        dto.setRoot(user.getRoot());
         dto.setAvatar(user.getAnimal());
         dto.setColor(user.getColor());
-        dto.setVitrina();
-        );
+        dto.setVitrina(vitrinaService.getUserVitrins(user));
+        return dto;
     }
 
     public static User mapToUserRegistration(RegistrationUserDto dto) {

@@ -1,11 +1,14 @@
 package ru.dns.vitrina.server.animal.service;
 
 
+import ru.dns.vitrina.server.animal.dto.AnimalDto;
 import ru.dns.vitrina.server.animal.model.Animal;
 
-public interface AnimalService {
-    void update(long userId);
+import java.util.List;
 
-    Animal searchNullableAnimalUser();
+public interface AnimalService {
+    List<AnimalDto> findAll();
+
+    AnimalDto findById(int id);
 
 }

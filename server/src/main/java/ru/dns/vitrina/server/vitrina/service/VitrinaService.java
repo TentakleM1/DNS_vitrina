@@ -1,6 +1,8 @@
 package ru.dns.vitrina.server.vitrina.service;
 
+import ru.dns.vitrina.server.user.model.User;
 import ru.dns.vitrina.server.vitrina.dto.VitrinaDto;
+import ru.dns.vitrina.server.vitrina.model.Vitrina;
 
 import java.util.List;
 
@@ -14,4 +16,6 @@ public interface VitrinaService {
     List<VitrinaDto> getAll();
 
     VitrinaDto getById(Integer vitrinId);
+
+    List<Vitrina> getUserVitrins(User user);
 }

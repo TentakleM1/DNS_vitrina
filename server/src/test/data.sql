@@ -1,13 +1,17 @@
-INSERT INTO users (name,password,last_name,root)
+INSERT INTO users (name,password,last_name,root,color_id,animal_id)
 VALUES ('Ирина',
        '123456',
        'Поливаева',
-       'true');
-INSERT INTO users (name,password,last_name,root)
+       'true',
+        1,
+        1);
+INSERT INTO users (name,password,last_name,root,color_id,animal_id)
 VALUES ('Сергей',
        '123456',
        'Горячих',
-       'true');
+       'true',
+        2,
+        4);
 INSERT INTO tasks (name)
 VALUES ('Выставить товар со склада'),
     ('Поправить товар на витрине'),
