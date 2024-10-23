@@ -1,10 +1,12 @@
 package ru.dns.vitrina.server.color.service;
 
 
-import ru.dns.vitrina.server.color.model.Color;
+import ru.dns.vitrina.server.color.dto.ColorDto;
+
+import java.util.List;
 
 public interface ColorService {
-    void update(long userId);
+    List<ColorDto> findAll();
 
-    Color searchNullableColorUser();
+    ColorDto findById(int id);
 }

@@ -3,27 +3,33 @@ package ru.dns.vitrina.server.animal.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ru.dns.vitrina.server.animal.model.Animal;
+import ru.dns.vitrina.server.animal.dto.AnimalDto;
+import ru.dns.vitrina.server.animal.mapper.AnimalMapper;
 import ru.dns.vitrina.server.animal.repository.AnimalRepository;
 import ru.dns.vitrina.server.animal.service.AnimalService;
+import ru.dns.vitrina.server.exception.NotFoundException;
+
+import java.util.List;
 
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 @Slf4j
 public class AnimalServiceImpl implements AnimalService {
     private final AnimalRepository repository;
 
 
     @Override
-    public void update(long userId) {
-
+    public List<AnimalDto> findAll() {
+        return repository.findAll().stream()
+                .map(AnimalMapper::mapToAnimalDto)
+                .toList();
     }
 
     @Override
-    public Animal searchNullableAnimalUser() {
-        return null;
+    public AnimalDto findById(int id) {
+        return repository.findById(id)
+                .map(AnimalMapper::mapToAnimalDto)
+                .orElseThrow(()-> new NotFoundException("Animal not found with id: " + id));
     }
 }

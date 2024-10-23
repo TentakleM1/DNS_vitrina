@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.dns.vitrina.server.exception.NotFoundException;
 import ru.dns.vitrina.server.user.dto.RegistrationUserDto;
 import ru.dns.vitrina.server.user.dto.SignInUserDto;
 import ru.dns.vitrina.server.user.dto.UserDto;
@@ -35,12 +36,13 @@ public class UserServiceImpl implements UserService {
         return repository.findByLastNameAndPassword(signInUser.getLastName(), signInUser.getPassword()).stream()
                 .map(UserMapper::mapToDto)
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new NotFoundException("User not found"));
     }
 
     @Override
     @Transactional
     public void delete(long userId) {
+        findById(userId);
         repository.deleteById(userId);
     }
 
@@ -49,6 +51,11 @@ public class UserServiceImpl implements UserService {
         return repository.findAll().stream()
                 .map(UserMapper::mapToDto)
                 .toList();
+    }
+
+    @Override
+    public User findById(long userId) {
+        return repository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
     }
 
 

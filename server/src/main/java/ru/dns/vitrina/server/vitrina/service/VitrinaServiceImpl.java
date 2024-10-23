@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.dns.vitrina.server.exception.NotFoundException;
+import ru.dns.vitrina.server.user.model.User;
 import ru.dns.vitrina.server.vitrina.dto.VitrinaDto;
 import ru.dns.vitrina.server.vitrina.mapper.VitrinaMapper;
 import ru.dns.vitrina.server.vitrina.model.Vitrina;
@@ -52,5 +53,10 @@ public class VitrinaServiceImpl implements VitrinaService {
     public VitrinaDto getById(Integer vitrinId) {
         Vitrina vitrina = repository.findById(vitrinId).orElseThrow(() -> new NotFoundException("Витрина не найдена"));
         return VitrinaMapper.mapToDto(vitrina);
+    }
+
+    @Override
+    public List<Vitrina> getUserVitrins(User user) {
+        return repository.findByUser(user);
     }
 }

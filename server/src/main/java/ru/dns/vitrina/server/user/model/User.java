@@ -3,9 +3,7 @@ package ru.dns.vitrina.server.user.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import ru.dns.vitrina.server.animal.dto.AnimalDto;
 import ru.dns.vitrina.server.animal.model.Animal;
-import ru.dns.vitrina.server.color.dto.ColorDto;
 import ru.dns.vitrina.server.color.model.Color;
 
 @Entity
@@ -19,7 +17,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -34,7 +32,7 @@ public class User {
 
     @NotBlank
     @Column(nullable = false)
-    private boolean root;
+    private Boolean root;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "animal_id", nullable = false)
